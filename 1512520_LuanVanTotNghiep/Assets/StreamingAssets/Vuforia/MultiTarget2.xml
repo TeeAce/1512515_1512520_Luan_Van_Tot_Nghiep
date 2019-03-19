@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+    <Tracking>
+        <ImageTarget name="thach.Top" size="1.000000 1.000000"/>
+        <ImageTarget name="thach.Back" size="1.000000 1.000000"/>
+        <ImageTarget name="thach.Left" size="1.000000 1.000000"/>
+        <ImageTarget name="thach.Right" size="1.000000 1.000000"/>
+        <ImageTarget name="thach.Bottom" size="1.000000 0.995556"/>
+        <ImageTarget name="thach.Front" size="1.000000 1.000000"/>
+        <MultiTarget name="MultiTargetCube">
+            <Part name="thach.Left" translation="-0.5 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="thach.Right" translation="0.5 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="thach.Front" translation="0 0 0.5" rotation="AD: 1 0 0 0"/>
+            <Part name="thach.Back" translation="0 0 -0.5" rotation="AD: 0 1 0 180"/>
+            <Part name="thach.Top" translation="0 0.5 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="thach.Bottom" translation="0 -0.5 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+    </Tracking>
+</QCARConfig>
