@@ -13,7 +13,8 @@ public class MainController : MonoBehaviour {
     public List<Color> colors;
     public float timeDelay = 0.5f;
     public float timeCheckDelay = 0.5f;
-    public bool isHaveTarget;
+    private bool isDelay;
+    public int numBoundBoxActive;
 
 	// Use this for initialization
 	void Start () {
@@ -55,8 +56,6 @@ public class MainController : MonoBehaviour {
             return;
         }
 
-        isHaveTarget = data.recognizeObjects.Length > 0;
-
         for (int i = 0; i < Mathf.Min(data.recognizeObjects.Length, boundBoxContainer.childCount); i++)
         {
             Image boundBoxItem = boundBoxContainer.GetChild(i).GetComponent<Image>();
@@ -81,6 +80,8 @@ public class MainController : MonoBehaviour {
             boundBoxItem.gameObject.SetActive(true);
         }
 
+        UpdateNumBoundBoxActive();
+        isDelay = (data.recognizeObjects.Length > 0 && data.recognizeObjects.Length == numBoundBoxActive);
         //Debug.Log("Update Success");
     }
 
@@ -102,9 +103,19 @@ public class MainController : MonoBehaviour {
 
     private void CheckTatgetDelay()
     {
-        if (isHaveTarget)
+        if (isDelay)
             timeCheckDelay = timeDelay;
         else
             timeCheckDelay -= Time.deltaTime;
+    }
+
+    private void UpdateNumBoundBoxActive()
+    {
+        numBoundBoxActive = 0;
+        foreach (Transform child in boundBoxContainer)
+        {
+            if (child.gameObject.activeInHierarchy)
+                numBoundBoxActive++;
+        }
     }
 }
