@@ -15,11 +15,18 @@ public class MainController : MonoBehaviour {
     public float timeCheckDelay = 0.5f;
     private bool isDelay;
     public int numBoundBoxActive;
+    public Dictionary<string, int> listTargets = new Dictionary<string, int>();
+    private int typeTargetCount;
 
 	// Use this for initialization
 	void Start () {
         MakeInstance();
 
+        CmdLine();
+    }
+
+    void CmdLine()
+    {
         StringBuilder strBuilder = new StringBuilder("python ");
         strBuilder.AppendFormat("{0} -i={1} -o={2}", "F:/Thach/tf_object_detection/tools/image_detection_v2.py", AppConstant.PATH_CAMERA_TEXTURE_OUT_PUT + "Output.png", AppConstant.PATH_RECORGNIZE_IN_PUT + "ConfigRecorgnizeInput.csv");
 
@@ -61,10 +68,18 @@ public class MainController : MonoBehaviour {
             Image boundBoxItem = boundBoxContainer.GetChild(i).GetComponent<Image>();
             boundBoxItem.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x, -(data.recognizeObjects[i].y), boundBoxItem.rectTransform.position.z);
             boundBoxItem.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
-            boundBoxItem.color = colors[i % colors.Count];
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.rectTransform.sizeDelta= new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
-            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.text = string.Format("{0} {1}%", data.recognizeObjects[i].name.ToUpper(),(int)(data.recognizeObjects[i].score * 100));
-            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.color= colors[i % colors.Count];
+            //add list
+            string objectName = data.recognizeObjects[i].name.ToUpper();
+            if (!listTargets.ContainsKey(objectName))
+            {
+                listTargets[objectName] = typeTargetCount;
+                typeTargetCount++;
+            }
+
+            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
+            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.color= colors[listTargets[objectName] % colors.Count];
+            boundBoxItem.color = colors[listTargets[objectName] % colors.Count];
             boundBoxItem.gameObject.SetActive(true);
         }
 
@@ -73,10 +88,18 @@ public class MainController : MonoBehaviour {
             Image boundBoxItem = Instantiate(imgBoundBox, boundBoxContainer);
             boundBoxItem.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x, -(data.recognizeObjects[i].y), boundBoxItem.rectTransform.position.z);
             boundBoxItem.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
-            boundBoxItem.color = colors[i % colors.Count];
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
-            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.text = string.Format("{0} {1}%", data.recognizeObjects[i].name.ToUpper(), (int)(data.recognizeObjects[i].score * 100));
-            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.color = colors[i % colors.Count];
+            //add list
+            string objectName = data.recognizeObjects[i].name.ToUpper();
+            if (!listTargets.ContainsKey(objectName))
+            {
+                listTargets[objectName] = typeTargetCount;
+                typeTargetCount++;
+            }
+
+            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
+            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.color = colors[listTargets[objectName] % colors.Count];
+            boundBoxItem.color = colors[listTargets[objectName] % colors.Count];
             boundBoxItem.gameObject.SetActive(true);
         }
 

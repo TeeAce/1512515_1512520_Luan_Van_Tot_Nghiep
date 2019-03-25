@@ -80,7 +80,7 @@ namespace KAINamespace
                             i++;
                             continue;
                         }
-                        Debug.Log("Line: " + line + " i: " + i);
+                        //Debug.Log("Line: " + line + " i: " + i);
                         string[] col = line.Split('\t');
                         T configRecord = new T();
                         FieldInfo[] fields = configRecord.GetType().GetFields();
@@ -114,7 +114,7 @@ namespace KAINamespace
             catch (Exception e)
             {
                 // thong bao loi.
-                Debug.Log("Khong the doc du lieu tu file da cho: ");
+                //Debug.Log("Khong the doc du lieu tu file da cho: ");
             }
 
         }
