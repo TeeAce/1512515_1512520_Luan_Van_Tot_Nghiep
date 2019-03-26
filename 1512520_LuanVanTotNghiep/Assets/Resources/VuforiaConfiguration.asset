@@ -44,8 +44,10 @@ MonoBehaviour:
       ContainsMagnet: 0
   databaseLoad:
     dataSetsToLoad:
+    - Book
     - Flower
     dataSetsToActivate:
+    - Book
     - Flower
   videoBackground:
     clippingMode: 0
@@ -64,7 +66,7 @@ MonoBehaviour:
     modelTransformEnabled: 0
     modelTransform: {x: 0, y: 0.1, z: -0.1}
   webcam:
-    deviceNameSetInEditor: 
+    deviceNameSetInEditor: Logitech HD Webcam C270
     flipHorizontally: 0
     turnOffWebCam: 0
     renderTextureLayer: 30
