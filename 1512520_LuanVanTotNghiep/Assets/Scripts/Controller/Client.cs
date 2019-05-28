@@ -8,6 +8,9 @@ public class Client : MonoBehaviour {
 
     public SocketIOComponent socket;
     JSONObject jSONObject = new JSONObject();
+    public string currObjId;
+    private Dictionary<string, Features> dicObjFeatures = new Dictionary<string, Features>();
+    public MenuInteractionController menuInteraction;
 
     public void Start()
     {
@@ -17,7 +20,10 @@ public class Client : MonoBehaviour {
 
     public void Update()
     {
-
+        if (dicObjFeatures.ContainsKey(currObjId))
+            EnableBtnControll();
+        else
+            DisableBtnControll();
     }
 
     public void AddListener()
@@ -28,12 +34,18 @@ public class Client : MonoBehaviour {
 
     private void OnResponseFeature(SocketIOEvent obj)
     {
-
-        string data = obj.data.ToString();
+        string data = obj.data["data"].ToString();
         Debug.Log(data);
         Features f = JsonUtility.FromJson<Features>(data);
 
-        Debug.Log(f.features[0].ToString());
+        string id = obj.data["id"].ToString();
+        id = id.Substring(1, id.Length - 2);
+
+        if (!dicObjFeatures.ContainsKey(id))
+            dicObjFeatures[id] = f;
+
+        if (currObjId == id)
+            menuInteraction.ShowMenuInteraction(f);
     }
 
     IEnumerator CheckConnectToServer()
@@ -45,14 +57,36 @@ public class Client : MonoBehaviour {
     public void OnUserConnected(SocketIOEvent evt)
     {
         Debug.Log("User Connected");
-        RequestFeature();
     }
 
-    public void RequestFeature()
+    public void RequestFeature(string id)
     {
+        if (dicObjFeatures.ContainsKey(id))
+            return;
+
         Dictionary<string, string> data = new Dictionary<string, string>();
-        data["id"] = "2";
+        data["id"] = id;
         socket.Emit(MS_CLIENT_TO_SERVER.REQUEST_FEATURE, new JSONObject(data));
+    }
+
+    public void GetFeaturesById(string id)
+    {
+        currObjId = id;
+
+        if (dicObjFeatures.ContainsKey(id))
+            menuInteraction.ShowMenuInteraction(dicObjFeatures[id]);
+        else
+            RequestFeature(id);
+    }
+
+    public void EnableBtnControll()
+    {
+
+    }
+
+    public void DisableBtnControll()
+    {
+
     }
 }
 
