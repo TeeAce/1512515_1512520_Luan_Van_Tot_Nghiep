@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/PiUi/TestScene/PieUI.unity
     guid: e4772b127aee05d4bbecc4509ad49cd0
+  - enabled: 1
+    path: Assets/Scenes/SceneControllPC.unity
+    guid: dca15183c3d388e4f97e26d11cc23bdf
   m_configObjects: {}

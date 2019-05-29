@@ -17,6 +17,8 @@ public class MenuInteractionController : MonoBehaviour {
     public GameObject btnExitControll;
     public string currObjId = "2";
 
+    public Action<string> OnClickFeature;
+
     private void Start()
     {
         //Get menu for easy not repetitive getting of the menu when setting joystick input
@@ -101,6 +103,6 @@ public class MenuInteractionController : MonoBehaviour {
 
     public void OnClickMenu(string id)
     {
-        Debug.Log("rev: " + id);
+        OnClickFeature(id);
     }
 }

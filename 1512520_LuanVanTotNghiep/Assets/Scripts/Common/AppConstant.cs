@@ -21,3 +21,12 @@ public class MS_SERVER_TO_CLIENT
     public static string RESPONSE_FEATURE       = "RESPONSE_FEATURE";
 
 }
+
+public class FEATURE
+{
+    //For PC
+    public static string OPEN_NOTEPAD           = "Open Notepad";
+    public static string OPEN_PAINT             = "Open Paint";
+    public static string CLOSE_NOTEPAD          = "Close Notepad";
+    public static string CLOSE_PAINT            = "Close Paint";
+}

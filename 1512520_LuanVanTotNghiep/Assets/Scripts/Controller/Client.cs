@@ -7,6 +7,7 @@ using System;
 public class Client : MonoBehaviour {
 
     public SocketIOComponent socket;
+    public SocketIOComponent socketIOT;
     JSONObject jSONObject = new JSONObject();
     public string currObjId;
     private Dictionary<string, Features> dicObjFeatures = new Dictionary<string, Features>();
@@ -28,8 +29,17 @@ public class Client : MonoBehaviour {
 
     public void AddListener()
     {
+        //Message
         socket.On(MS_SERVER_TO_CLIENT.USER_CONNECTED, OnUserConnected);
         socket.On(MS_SERVER_TO_CLIENT.RESPONSE_FEATURE, OnResponseFeature);
+
+        //Event
+        menuInteraction.OnClickFeature += ExcuteFeature;
+    }
+
+    public void OnDestroy()
+    {
+        menuInteraction.OnClickFeature -= ExcuteFeature;
     }
 
     private void OnResponseFeature(SocketIOEvent obj)
@@ -87,6 +97,12 @@ public class Client : MonoBehaviour {
     public void DisableBtnControll()
     {
 
+    }
+
+    public void ExcuteFeature(string feature)
+    {
+        Debug.Log("Excuted " + feature);
+        socketIOT.Emit(feature);
     }
 }
 
