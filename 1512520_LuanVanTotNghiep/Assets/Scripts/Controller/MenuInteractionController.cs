@@ -14,7 +14,8 @@ public class MenuInteractionController : MonoBehaviour {
     public Color colorHightlight;
 
     public GameObject panelRecognize;
-    public GameObject btnExitControll;
+    public Animator btnExitControll;
+    public Animator panelDeviceInfo;
     public string currObjId = "2";
 
     public Action<string> OnClickFeature;
@@ -75,13 +76,17 @@ public class MenuInteractionController : MonoBehaviour {
         piUi.ChangeMenuState("Normal Menu", new Vector2(Screen.width / 2f, Screen.height / 2f));
 
         panelRecognize.SetActive(false);
-        btnExitControll.SetActive(true);
+        btnExitControll.gameObject.SetActive(true);
+        panelDeviceInfo.gameObject.SetActive(true);
+        btnExitControll.Play(AppConstant.INTRO_ANIM, -1, 0f);
+        panelDeviceInfo.Play(AppConstant.INTRO_ANIM, -1, 0f);
     }
 
     public void OnClickExitControll()
     {
         panelRecognize.SetActive(true);
-        btnExitControll.SetActive(false);
+        btnExitControll.gameObject.SetActive(false);
+        panelDeviceInfo.gameObject.SetActive(false);
         normalMenu.ClearMenu();
 
     }

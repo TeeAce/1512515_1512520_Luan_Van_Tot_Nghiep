@@ -8,7 +8,7 @@ public class Client : MonoBehaviour {
 
     public SocketIOComponent socket;
     public SocketIOComponent socketIOT;
-    JSONObject jSONObject = new JSONObject();
+    [HideInInspector]
     public string currObjId;
     private Dictionary<string, Features> dicObjFeatures = new Dictionary<string, Features>();
     public MenuInteractionController menuInteraction;
