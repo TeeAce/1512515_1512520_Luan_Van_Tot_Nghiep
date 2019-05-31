@@ -8,9 +8,9 @@ public class Client : MonoBehaviour {
 
     public SocketIOComponent socket;
     public SocketIOComponent socketIOT;
-    [HideInInspector]
-    public string currObjId;
     private Dictionary<string, Features> dicObjFeatures = new Dictionary<string, Features>();
+    private string currDeviceIdRequest;
+
     public MenuInteractionController menuInteraction;
 
     public void Start()
@@ -21,10 +21,7 @@ public class Client : MonoBehaviour {
 
     public void Update()
     {
-        if (dicObjFeatures.ContainsKey(currObjId))
-            EnableBtnControll();
-        else
-            DisableBtnControll();
+
     }
 
     public void AddListener()
@@ -34,12 +31,14 @@ public class Client : MonoBehaviour {
         socket.On(MS_SERVER_TO_CLIENT.RESPONSE_FEATURE, OnResponseFeature);
 
         //Event
-        menuInteraction.OnClickFeature += ExcuteFeature;
+        if(menuInteraction != null)
+            menuInteraction.OnClickFeature += ExcuteFeature;
     }
 
     public void OnDestroy()
     {
-        menuInteraction.OnClickFeature -= ExcuteFeature;
+        if (menuInteraction != null)
+            menuInteraction.OnClickFeature -= ExcuteFeature;
     }
 
     private void OnResponseFeature(SocketIOEvent obj)
@@ -53,9 +52,6 @@ public class Client : MonoBehaviour {
 
         if (!dicObjFeatures.ContainsKey(id))
             dicObjFeatures[id] = f;
-
-        if (currObjId == id)
-            menuInteraction.ShowMenuInteraction(f);
     }
 
     IEnumerator CheckConnectToServer()
@@ -77,16 +73,21 @@ public class Client : MonoBehaviour {
         Dictionary<string, string> data = new Dictionary<string, string>();
         data["id"] = id;
         socket.Emit(MS_CLIENT_TO_SERVER.REQUEST_FEATURE, new JSONObject(data));
+        //Debug.Log("Da Gui: " + id);
     }
 
-    public void GetFeaturesById(string id)
+    public Features GetFeaturesById(string id)
     {
-        currObjId = id;
-
         if (dicObjFeatures.ContainsKey(id))
-            menuInteraction.ShowMenuInteraction(dicObjFeatures[id]);
+            return dicObjFeatures[id];
         else
+        {
+            if (currDeviceIdRequest == id)
+                return null;
+            currDeviceIdRequest = id;
             RequestFeature(id);
+            return null;
+        }
     }
 
     public void EnableBtnControll()

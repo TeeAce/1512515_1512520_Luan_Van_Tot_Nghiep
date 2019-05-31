@@ -141,7 +141,8 @@ public class PiPiece : MonoBehaviour
 
                 if(Input.GetMouseButtonDown(0))
                 {
-                    onClickMenu(id);
+                    if(onClickMenu!=null)
+                        onClickMenu(id);
                     Debug.Log("Da Nhan: " + id);
                 }
             }

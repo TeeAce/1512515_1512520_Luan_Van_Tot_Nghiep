@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MenuInteractionController : MonoBehaviour {
 
+    public static MenuInteractionController Instance;
     public Client client;
     public PiUIManager piUi;
     private bool menuOpened;
@@ -13,22 +14,77 @@ public class MenuInteractionController : MonoBehaviour {
     public Color colorNormal;
     public Color colorHightlight;
 
-    public GameObject panelRecognize;
+    public RectTransform btnControll;
     public Animator btnExitControll;
     public Animator panelDeviceInfo;
+    public Text nameDevice;
     public string currObjId = "2";
+    public bool isControlling;
+    private Features currFeatures;
+    public MainController mainController;
 
     public Action<string> OnClickFeature;
+    public Action<bool> OnControll;
 
     private void Start()
     {
+        MakeInstance();
         //Get menu for easy not repetitive getting of the menu when setting joystick input
         normalMenu = piUi.GetPiUIOf("Normal Menu");
+
+        if(mainController != null)
+        {
+            mainController.OnMainObjectDetected += OnMainObjectDetected;
+            mainController.OnNotFoundObject += OnNotFoundTarget;
+        }
+
+        gameObject.GetComponent<Canvas>().sortingOrder = 1;
     }
+
+    private void OnDestroy()
+    {
+        if (mainController != null)
+        {
+            mainController.OnMainObjectDetected -= OnMainObjectDetected;
+            mainController.OnNotFoundObject -= OnNotFoundTarget;
+        }
+    }
+
+    private void Update()
+    {
+        if (isControlling && btnControll.gameObject.activeInHierarchy)
+            btnControll.gameObject.SetActive(false);
+    }
+
+    public void OnMainObjectDetected(RecognizeObject recognizeObject)
+    {
+        if (isControlling)
+            return;
+
+        currFeatures = client.GetFeaturesById(recognizeObject.name);
+        if (currFeatures == null)
+        {
+            Debug.Log("k co Feature");
+            btnControll.gameObject.SetActive(false);
+            return;
+        }
+        nameDevice.text = "Device: " + recognizeObject.name;
+
+        btnControll.localPosition = new Vector3(recognizeObject.x + (float)recognizeObject.width/2, -(recognizeObject.y+ (float)recognizeObject.height/2), btnControll.localPosition.z);
+        btnControll.gameObject.SetActive(true);
+
+        //Debug.Log(recognizeObject.x + " : " + recognizeObject.y +" , "+ recognizeObject.width + " : " + recognizeObject.height);
+    }
+
+
 
     public void OnClickCreateMenuInteraction()
     {
-        client.GetFeaturesById(currObjId);
+        isControlling = true;
+        if (OnControll != null)
+            OnControll(true);
+
+        ShowMenuInteraction(currFeatures);
     }
 
     public void ShowMenuInteraction(Features f)
@@ -75,7 +131,6 @@ public class MenuInteractionController : MonoBehaviour {
         piUi.RegeneratePiMenu("Normal Menu");
         piUi.ChangeMenuState("Normal Menu", new Vector2(Screen.width / 2f, Screen.height / 2f));
 
-        panelRecognize.SetActive(false);
         btnExitControll.gameObject.SetActive(true);
         panelDeviceInfo.gameObject.SetActive(true);
         btnExitControll.Play(AppConstant.INTRO_ANIM, -1, 0f);
@@ -84,10 +139,13 @@ public class MenuInteractionController : MonoBehaviour {
 
     public void OnClickExitControll()
     {
-        panelRecognize.SetActive(true);
         btnExitControll.gameObject.SetActive(false);
         panelDeviceInfo.gameObject.SetActive(false);
         normalMenu.ClearMenu();
+
+        isControlling = false;
+        if (OnControll != null)
+            OnControll(false);
 
     }
 
@@ -108,6 +166,21 @@ public class MenuInteractionController : MonoBehaviour {
 
     public void OnClickMenu(string id)
     {
-        OnClickFeature(id);
+        if(OnClickFeature!=null)
+            OnClickFeature(id);
+    }
+
+    private void MakeInstance()
+    {
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
+            Destroy(this.gameObject);
+    }
+
+    public void OnNotFoundTarget()
+    {
+        if (btnControll.gameObject.activeInHierarchy)
+            btnControll.gameObject.SetActive(false);
     }
 }

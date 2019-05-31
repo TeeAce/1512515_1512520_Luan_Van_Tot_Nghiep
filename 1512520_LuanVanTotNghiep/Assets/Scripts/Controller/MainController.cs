@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class MainController : MonoBehaviour {
 
@@ -17,12 +18,31 @@ public class MainController : MonoBehaviour {
     public int numBoundBoxActive;
     public Dictionary<string, int> listTargets = new Dictionary<string, int>();
     private int typeTargetCount;
+    public bool isSelectMainObj=true;
+    public bool isControlling;
+    public MenuInteractionController menuInteraction;
+
+    public Action<RecognizeObject> OnMainObjectDetected;
+    public Action OnNotFoundObject;
 
 	// Use this for initialization
 	void Start () {
         MakeInstance();
 
         CmdLine();
+
+        //event
+        if (menuInteraction != null)
+            menuInteraction.OnControll += OnControll;
+
+        gameObject.GetComponent<Canvas>().sortingOrder = 0;
+    }
+
+    private void OnDestroy()
+    {
+        //event
+        if (menuInteraction != null)
+            menuInteraction.OnControll -= OnControll;
     }
 
     void CmdLine()
@@ -49,24 +69,55 @@ public class MainController : MonoBehaviour {
 
     private void UpdateBoundBox()
     {
+        RecognizeInputStruct data = fileController.LoadRecorgnizeInput();
+
         CheckTatgetDelay();
         if(timeCheckDelay<=0)
         {
             DisableAllChild(boundBoxContainer);
             timeCheckDelay = timeDelay;
+
+            if (data == null || data.recognizeObjects.Length == 0)
+            {
+                if (OnNotFoundObject != null)
+                    OnNotFoundObject();
+            }
         }
 
-        RecognizeInputStruct data = fileController.LoadRecorgnizeInput();
         if (data == null)
         {
             imgBoundBox.rectTransform.sizeDelta = Vector2.zero;
             return;
         }
 
+        //Select Main Object
+        if (data.recognizeObjects.Length > 0 && isSelectMainObj)
+        {
+            if(isControlling)
+            {
+                data.recognizeObjects = new RecognizeObject[0];
+            }
+            else
+            {
+                RecognizeObject bestObj = data.recognizeObjects[0];
+                for (int i = 1; i < data.recognizeObjects.Length; i++)
+                {
+                    if (bestObj.score < data.recognizeObjects[i].score)
+                        bestObj = data.recognizeObjects[i];
+                }
+
+                data.recognizeObjects = new RecognizeObject[1];
+                data.recognizeObjects[0] = bestObj;
+
+                if (OnMainObjectDetected != null)
+                    OnMainObjectDetected(data.recognizeObjects[0]);
+            }
+        }
+
         for (int i = 0; i < Mathf.Min(data.recognizeObjects.Length, boundBoxContainer.childCount); i++)
         {
             Image boundBoxItem = boundBoxContainer.GetChild(i).GetComponent<Image>();
-            boundBoxItem.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x, -(data.recognizeObjects[i].y), boundBoxItem.rectTransform.position.z);
+            boundBoxItem.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x, -(data.recognizeObjects[i].y), boundBoxItem.rectTransform.localPosition.z);
             boundBoxItem.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.rectTransform.sizeDelta= new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //add list
@@ -86,7 +137,7 @@ public class MainController : MonoBehaviour {
         for (int i = boundBoxContainer.childCount; i < data.recognizeObjects.Length; i++)
         {
             Image boundBoxItem = Instantiate(imgBoundBox, boundBoxContainer);
-            boundBoxItem.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x, -(data.recognizeObjects[i].y), boundBoxItem.rectTransform.position.z);
+            boundBoxItem.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x, -(data.recognizeObjects[i].y), boundBoxItem.rectTransform.localPosition.z);
             boundBoxItem.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //add list
@@ -140,5 +191,26 @@ public class MainController : MonoBehaviour {
             if (child.gameObject.activeInHierarchy)
                 numBoundBoxActive++;
         }
+    }
+
+    private void FilterMainBoundBox(RecognizeObject[] recognizeObjects)
+    {
+        if (recognizeObjects == null || recognizeObjects.Length == 0)
+            return;
+
+        RecognizeObject bestObj = recognizeObjects[0];
+        for(int i=1;i<recognizeObjects.Length;i++)
+        {
+            if(bestObj.score < recognizeObjects[i].score)
+                bestObj = recognizeObjects[i];
+        }
+
+        recognizeObjects = new RecognizeObject[1];
+        recognizeObjects[0] = bestObj;
+    }
+
+    public void OnControll(bool isControlling)
+    {
+        this.isControlling = isControlling;
     }
 }
