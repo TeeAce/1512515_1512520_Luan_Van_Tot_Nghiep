@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
 using SocketIO;
+using System.Runtime.InteropServices;
+using System;
+using Plugins.SystemVolumePlugin;
 
 public class ClientControllPC : MonoBehaviour {
     public SocketIOComponent socketIO;
@@ -11,6 +14,7 @@ public class ClientControllPC : MonoBehaviour {
     {
         AddListener();
         StartCoroutine(RegisIOT());
+        SystemVolumePlugin.InitializeVolume();
     }
 
     public void AddListener()
@@ -54,5 +58,15 @@ public class ClientControllPC : MonoBehaviour {
     {
         foreach (Process process in Process.GetProcessesByName("mspaint"))
             process.Kill();
+    }
+
+    public void UpVolume()
+    {
+        SystemVolumePlugin.SetVolume(SystemVolumePlugin.GetVolume() + 0.02f);
+    }
+
+    public void DownVolume()
+    {
+        SystemVolumePlugin.SetVolume(SystemVolumePlugin.GetVolume() - 0.02f);
     }
 }
