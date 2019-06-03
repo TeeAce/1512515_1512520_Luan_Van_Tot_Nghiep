@@ -87,7 +87,7 @@ public class FileController : MonoBehaviour {
         {
             File.Delete(Application.dataPath + "/Resources/Input/ConfigRecorgnizeInput.csv");
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
 
         }

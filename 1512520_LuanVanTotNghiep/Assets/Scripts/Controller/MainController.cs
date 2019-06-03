@@ -24,6 +24,8 @@ public class MainController : MonoBehaviour {
 
     public Action<RecognizeObject> OnMainObjectDetected;
     public Action OnNotFoundObject;
+    public float screenWidth;
+    public float screenHeight;
 
 	// Use this for initialization
 	void Start () {
@@ -130,6 +132,8 @@ public class MainController : MonoBehaviour {
 
             boundBoxItem.GetComponent<BoundBoxItem>().lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
             boundBoxItem.GetComponent<BoundBoxItem>().lbContent.color= colors[listTargets[objectName] % colors.Count];
+            boundBoxItem.GetComponent<BoundBoxItem>().lbDesc.text = data.recognizeObjects[i].description;
+            boundBoxItem.GetComponent<BoundBoxItem>().OptimizeDes(data.recognizeObjects[i].x + data.recognizeObjects[i].width/2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height/2), screenWidth, screenHeight);
             boundBoxItem.color = colors[listTargets[objectName] % colors.Count];
             boundBoxItem.gameObject.SetActive(true);
         }
@@ -150,6 +154,8 @@ public class MainController : MonoBehaviour {
 
             boundBoxItem.GetComponent<BoundBoxItem>().lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
             boundBoxItem.GetComponent<BoundBoxItem>().lbContent.color = colors[listTargets[objectName] % colors.Count];
+            boundBoxItem.GetComponent<BoundBoxItem>().lbDesc.text = data.recognizeObjects[i].description;
+            boundBoxItem.GetComponent<BoundBoxItem>().OptimizeDes(data.recognizeObjects[i].x + data.recognizeObjects[i].width / 2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height / 2), screenWidth, screenHeight);
             boundBoxItem.color = colors[listTargets[objectName] % colors.Count];
             boundBoxItem.gameObject.SetActive(true);
         }

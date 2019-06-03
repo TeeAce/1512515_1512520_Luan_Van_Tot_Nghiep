@@ -56,4 +56,5 @@ public class RecognizeObject
     public float height;
     public float score;
     public string name;
+    public string description;
 }
