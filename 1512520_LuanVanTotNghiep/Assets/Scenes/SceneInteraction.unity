@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66635310eb617b84d9dca747349f9a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeDelay: 5
+  timeDelay: 2
   cameraTexture: {fileID: 8400000, guid: e22a434e8559534448e49e5c78942cde, type: 2}
 --- !u!4 &192776675
 Transform:
