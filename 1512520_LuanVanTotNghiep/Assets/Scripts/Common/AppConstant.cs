@@ -31,4 +31,6 @@ public class FEATURE
     public static string OPEN_PAINT             = "Open Paint";
     public static string CLOSE_NOTEPAD          = "Close Notepad";
     public static string CLOSE_PAINT            = "Close Paint";
+    public static string UP_VOLUME              = "Up Volume";
+    public static string DOWN_VOLUME            = "Down Volume";
 }

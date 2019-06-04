@@ -9,6 +9,7 @@ public class BoundBoxItem : MonoBehaviour {
     public Text lbDesc;
     public RectTransform panelBGDes;
     public RectTransform line;
+    public GameObject panelDes;
     public float posXLeft;
     public float posXRight;
     public float posYUp;

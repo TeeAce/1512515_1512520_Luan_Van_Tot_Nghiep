@@ -23,6 +23,8 @@ public class ClientControllPC : MonoBehaviour {
         socketIO.On(FEATURE.OPEN_PAINT, OpenPaint);
         socketIO.On(FEATURE.CLOSE_NOTEPAD, CloseNotePad);
         socketIO.On(FEATURE.CLOSE_PAINT, ClosePaint);
+        socketIO.On(FEATURE.UP_VOLUME, UpVolume);
+        socketIO.On(FEATURE.DOWN_VOLUME, DownVolume);
 
         socketIO.On("REGIS_SUCCESS", OnRegisSuccess);
     }
@@ -60,12 +62,12 @@ public class ClientControllPC : MonoBehaviour {
             process.Kill();
     }
 
-    public void UpVolume()
+    public void UpVolume(SocketIOEvent socketIOEvent)
     {
         SystemVolumePlugin.SetVolume(SystemVolumePlugin.GetVolume() + 0.02f);
     }
 
-    public void DownVolume()
+    public void DownVolume(SocketIOEvent socketIOEvent)
     {
         SystemVolumePlugin.SetVolume(SystemVolumePlugin.GetVolume() - 0.02f);
     }

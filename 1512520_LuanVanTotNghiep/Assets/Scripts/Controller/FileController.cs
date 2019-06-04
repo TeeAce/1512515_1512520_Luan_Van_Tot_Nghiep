@@ -83,14 +83,14 @@ public class FileController : MonoBehaviour {
         RecognizeInputStruct inputData = KAIConfigManager.Instance.ConfigQuizData.records[0].GetRecorgnizeInputStruct();
 
         //delete file after read
-        try
-        {
-            File.Delete(Application.dataPath + "/Resources/Input/ConfigRecorgnizeInput.csv");
-        }
-        catch (Exception ex)
-        {
+        //try
+        //{
+        //    File.Delete(Application.dataPath + "/Resources/Input/ConfigRecorgnizeInput.csv");
+        //}
+        //catch (Exception ex)
+        //{
 
-        }
+        //}
 
         KAIConfigManager.Instance.ConfigQuizData = new ConfigRecorgnizeInput();
 

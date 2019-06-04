@@ -712,6 +712,7 @@ MonoBehaviour:
   lbDesc: {fileID: 114321917546886686}
   panelBGDes: {fileID: 224034780131790148}
   line: {fileID: 224186765345033490}
+  panelDes: {fileID: 1798228026176018}
   posXLeft: -652.8
   posXRight: 146.9
   posYUp: 49

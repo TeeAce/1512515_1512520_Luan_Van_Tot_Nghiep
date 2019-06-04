@@ -724,10 +724,6 @@ Prefab:
       propertyPath: menuInteraction
       value: 
       objectReference: {fileID: 1153541979}
-    - target: {fileID: 1177558474424362, guid: c3cce37fc3068ab40bc344648331de6c, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3cce37fc3068ab40bc344648331de6c, type: 2}
   m_IsPrefabAsset: 0
