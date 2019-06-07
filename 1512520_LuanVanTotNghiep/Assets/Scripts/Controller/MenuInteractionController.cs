@@ -18,7 +18,6 @@ public class MenuInteractionController : MonoBehaviour {
     public Animator btnExitControll;
     public Animator panelDeviceInfo;
     public Text nameDevice;
-    public string currObjId = "2";
     public bool isControlling;
     private Features currFeatures;
     public MainController mainController;
@@ -31,6 +30,9 @@ public class MenuInteractionController : MonoBehaviour {
         MakeInstance();
         //Get menu for easy not repetitive getting of the menu when setting joystick input
         normalMenu = piUi.GetPiUIOf("Normal Menu");
+
+        if (normalMenu == null)
+            Debug.Log("Null");
 
         if(mainController != null)
         {

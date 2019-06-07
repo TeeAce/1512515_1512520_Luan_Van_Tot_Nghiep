@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 114187857285675366}
   - component: {fileID: 114990128538550592}
   - component: {fileID: 114411447690347062}
+  - component: {fileID: 114905405256037148}
   m_Layer: 5
   m_Name: PiCut
   m_TagString: Untagged
@@ -223,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -232,11 +233,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 1
-    m_MinSize: 24
-    m_MaxSize: 40
+    m_MinSize: 4
+    m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -488,6 +489,23 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114905405256037148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1626847558335218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f69b2b2634d43e4e8ae56cc0eda55bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  btnImage: {fileID: 0}
+  piPiece: {fileID: 114990128538550592}
+  scaleoffset: 1.3
+  colorHighLight: {r: 0.5019608, g: 0.9254902, b: 0.20392157, a: 1}
+  colorNormal: {r: 0, g: 0.65882355, b: 1, a: 1}
 --- !u!114 &114961249132881464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -519,6 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   content: {fileID: 0}
+  isOver: 0
   innerRadius: 0
   outerRadius: 0
   normalColor: {r: 0, g: 0, b: 0, a: 0}
@@ -656,7 +675,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 823.1, y: 181.3}
+  m_SizeDelta: {x: 320, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224871834690545698
 RectTransform:

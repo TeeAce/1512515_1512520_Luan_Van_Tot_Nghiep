@@ -16,7 +16,7 @@ public class PiPiece : MonoBehaviour
     [HideInInspector]
     public System.Action<string> onClickMenu;
 
-    private bool isOver;
+    public bool isOver;
     private bool lerp;
     private Image thisImg;
     [HideInInspector]
@@ -70,6 +70,127 @@ public class PiPiece : MonoBehaviour
     {
         thisImg.color= normalColor;
 
+    }
+
+    public void NewManualUpdate()
+    {
+        Vector2 inputAxis = parent.joystickInput;
+        sliceIcon.transform.position = Center();
+        sliceLabel.transform.position = Center() - new Vector2(0, sliceIcon.rectTransform.sizeDelta.y + parent.textVerticalOffset) * parent.scaleModifier * transform.lossyScale.magnitude;
+        if (isInteractable)
+        {
+            if (isOver && transform.localScale.sqrMagnitude < (Vector2.one * parent.hoverScale).sqrMagnitude)
+            {
+                transform.localScale = Vector2.Lerp(transform.localScale, Vector2.one * parent.hoverScale, Time.deltaTime * 10f);
+            }
+            else if (transform.localScale.sqrMagnitude > 1 && !isOver)
+            {
+                transform.localScale = Vector2.Lerp(transform.localScale, Vector2.one, Time.deltaTime * 10f);
+            }
+            Vector2 mousePos = Input.mousePosition;
+            Vector2 temp = mousePos - (Vector2)transform.position;
+            float angle = (Mathf.Atan2(temp.y, temp.x) * Mathf.Rad2Deg);
+            angle = (angle + 360) % 360;
+            scaledOR = outerRadius;
+            if (angle < maxAngle && angle > minAngle && temp.magnitude >= innerRadius && temp.magnitude <= scaledOR)
+            {
+                //isOver = true;
+            }
+            else if (parent.useController && isInteractable)
+            {
+                temp = inputAxis;
+                angle = (Mathf.Atan2(temp.y, temp.x) * Mathf.Rad2Deg);
+                angle = (angle + 360) % 360;
+                if (angle == 0)
+                {
+                    angle += 1;
+                }
+                if (angle < maxAngle && angle >= minAngle && inputAxis != Vector2.zero)
+                {
+                    //isOver = true;
+                }
+                else
+                {
+                    //isOver = false;
+                    //thisImg.color = Color.Lerp(thisImg.color, normalColor, Time.deltaTime * 10f);
+                }
+
+            }
+            else
+            {
+                //isOver = false;
+                //thisImg.color = Color.Lerp(thisImg.color, normalColor, Time.deltaTime * 10f);
+            }
+            if (!parent.interactable)
+            {
+                //isOver = false;
+                if (parent.fade)
+                {
+                    //thisImg.color = Color.Lerp(thisImg.color, Color.clear, Time.deltaTime * 10f);
+                }
+            }
+            if (isOver && parent.interactable)
+            {
+                scaledOR *= parent.hoverScale;
+                transform.SetAsLastSibling();
+                //thisImg.color = Color.Lerp(thisImg.color, highlightColor, Time.deltaTime * 10f);
+                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0) || parent.useController && parent.joystickButton)
+                {
+                    clickEvent.Invoke();
+                }
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (onClickMenu != null)
+                        onClickMenu(id);
+                    Debug.Log("Da Nhan: " + id);
+                }
+            }
+        }
+        else
+        {
+            //thisImg.color = disabledColor;
+            transform.localScale = Vector2.Lerp(transform.localScale, Vector2.one, Time.deltaTime * 10f);
+        }
+        if (transform.rotation.eulerAngles.z == 359f || transform.rotation.eulerAngles.z == 0)
+        {
+            transform.rotation = Quaternion.identity;
+        }
+        if (transform.rotation.eulerAngles.z == 359f || transform.rotation.eulerAngles.z == 0 && parent.openedMenu)
+        {
+            transform.rotation = Quaternion.identity;
+            maxAngle = 359f;
+            minAngle = 359f - (thisImg.fillAmount * 360);
+        }
+        else if (parent.interactable)
+        {
+            maxAngle = transform.rotation.eulerAngles.z;
+            minAngle = transform.rotation.eulerAngles.z - (thisImg.fillAmount * 360);
+        }
+        sliceLabel.transform.rotation = Quaternion.identity;
+        sliceIcon.transform.rotation = Quaternion.identity;
+        if (lastFrameIsOver != isOver && isInteractable && parent.interactable && onHoverEvents)
+        {
+            if (isOver && onHoverEnter.GetPersistentEventCount() >= 0)
+            {
+                OnHoverEnter();
+            }
+            else if (!isOver && onHoverEnter.GetPersistentEventCount() >= 0)
+            {
+                OnHoverExit();
+            }
+        }
+        if (isOver)
+        {
+            parent.overMenu = true;
+        }
+
+        if(isOver)
+            thisImg.color = Color.Lerp(thisImg.color, highlightColor, Time.deltaTime * 10f);
+        else
+            thisImg.color = Color.Lerp(thisImg.color, normalColor, Time.deltaTime * 10f);
+
+        lastFrameIsOver = isOver;
     }
 
     public void ManualUpdate()

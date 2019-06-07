@@ -276,7 +276,11 @@ public class PiUI : MonoBehaviour
         {
             if (pi.gameObject.activeInHierarchy)
             {
+#if UNITY_EDITOR
+                pi.NewManualUpdate();
+#else
                 pi.ManualUpdate( );
+#endif
             }
         }
     }
@@ -377,7 +381,7 @@ public class PiUI : MonoBehaviour
         }
     }
 
-    #region TRANSITIONS
+#region TRANSITIONS
     private void Scale()
     {
         if (openedMenu)
@@ -549,7 +553,7 @@ public class PiUI : MonoBehaviour
         Fan( );
         Scale( );
     }
-    #endregion
+#endregion
 
     /// <summary>
     /// Set pi rotation to proper rotation, useful for ensuring rotational transitions work.
