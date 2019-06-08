@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.WSA.Input;
 
 public class MainUI : MonoBehaviour {
     public List<ButtonCommon> listButton = new List<ButtonCommon>();
@@ -10,10 +12,38 @@ public class MainUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        //Invoke("Test0", 2);
+#if !UNITY_EDITOR
         AddListener();
-
-        Invoke("Test0", 2);
         InvokeRepeating("UpdateCurrButtonSelect", 1f, 0.1f);
+#endif
+    }
+
+    void Update()
+    {
+#if !UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (currButtonIndex > 0)
+                currButtonIndex--;
+            else
+                currButtonIndex = listButton.Count - 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (currButtonIndex < listButton.Count - 1)
+                currButtonIndex++;
+            else
+                currButtonIndex = 0;
+        }
+
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            if (currButtonIndex >= 0 && currButtonIndex <= listButton.Count - 1)
+                listButton[currButtonIndex].OnClicked();
+        }
+#endif
     }
 
     public void Test0()
@@ -41,15 +71,19 @@ public class MainUI : MonoBehaviour {
 
     private void AddListener()
     {
-        UIEvent.OnButtonClicked += OnButtonClicked;
+        UIEvent.OnUpdateUI += OnUpdateUI;
+        InteractionManager.InteractionSourcePressed += InteractionSourcePressed;
+        InteractionManager.InteractionSourceUpdated += InteractionSourceUpdated;
     }
 
     private void RemoveListener()
     {
-        UIEvent.OnButtonClicked -= OnButtonClicked;
+        UIEvent.OnUpdateUI -= OnUpdateUI;
+        InteractionManager.InteractionSourcePressed -= InteractionSourcePressed;
+        InteractionManager.InteractionSourceUpdated -= InteractionSourceUpdated;
     }
 
-    public void OnButtonClicked()
+    public void OnUpdateUI()
     {
         Invoke("UpdateListButton", 1f);
     }
@@ -87,9 +121,46 @@ public class MainUI : MonoBehaviour {
         for(int i=0;i<listButton.Count;i++)
         {
             if (i == currButtonIndex)
-                listButton[i].OnSelected();
+            {
+                if(listButton[i]!=null)
+                    listButton[i].OnSelected();
+            }
             else
-                listButton[i].OnUnselected();
+            {
+                if(listButton[i]!=null)
+                    listButton[i].OnUnselected();
+            }
+        }
+    }
+
+    private void InteractionSourceUpdated(InteractionSourceUpdatedEventArgs obj)
+    {
+        Vector2 pos = obj.state.thumbstickPosition;
+        if (pos == Vector2.zero)
+            return;
+
+        if ((Mathf.Abs(pos.x) >= Mathf.Abs(pos.y) && pos.x <= 0) || (Mathf.Abs(pos.x) <= Mathf.Abs(pos.y) && pos.y <= 0))
+        {
+            if (currButtonIndex > 0)
+                currButtonIndex--;
+            else
+                currButtonIndex = listButton.Count - 1;
+        }
+        else
+        {
+            if (currButtonIndex < listButton.Count - 1)
+                currButtonIndex++;
+            else
+                currButtonIndex = 0;
+        }
+    }
+
+    private void InteractionSourcePressed(InteractionSourcePressedEventArgs obj)
+    {
+        if(obj.pressType == InteractionSourcePressType.Select || obj.pressType == InteractionSourcePressType.Grasp)
+        {
+            if (currButtonIndex >= 0 && currButtonIndex <= listButton.Count - 1)
+                listButton[currButtonIndex].OnClicked();
         }
     }
 }

@@ -4,6 +4,6 @@ using UnityEngine;
 using System;
 
 public class UIEvent {
-    // call when any button clicked
-    public static Action OnButtonClicked;
+    // call when any Update UI
+    public static Action OnUpdateUI;
 }

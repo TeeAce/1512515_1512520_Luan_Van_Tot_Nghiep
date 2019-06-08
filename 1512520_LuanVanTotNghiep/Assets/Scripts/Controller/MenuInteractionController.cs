@@ -87,6 +87,9 @@ public class MenuInteractionController : MonoBehaviour {
             OnControll(true);
 
         ShowMenuInteraction(currFeatures);
+
+        if (UIEvent.OnUpdateUI != null)
+            UIEvent.OnUpdateUI();
     }
 
     public void ShowMenuInteraction(Features f)
@@ -149,6 +152,8 @@ public class MenuInteractionController : MonoBehaviour {
         if (OnControll != null)
             OnControll(false);
 
+        if (UIEvent.OnUpdateUI != null)
+            UIEvent.OnUpdateUI();
     }
 
     private void OnSlidePressed()

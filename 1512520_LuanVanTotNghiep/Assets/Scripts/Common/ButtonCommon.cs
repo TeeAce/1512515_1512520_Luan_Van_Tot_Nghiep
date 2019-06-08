@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonCommon : MonoBehaviour {
-    public string id;
     //not use for PiPiece UI
     public Image btnImage;
+    public Button btn;
+
     //only use for PiPiece UI
     public PiPiece piPiece;
+
     public float scaleoffset = 1.3f;
     public Color colorHighLight;
     public Color colorNormal;
@@ -34,5 +36,17 @@ public class ButtonCommon : MonoBehaviour {
             transform.localScale = Vector3.one;
             btnImage.color = colorNormal;
         }
+    }
+
+    public void OnClicked()
+    {
+        if (piPiece != null)
+        {
+            if(piPiece.onClickMenu!=null)
+                piPiece.onClickMenu(piPiece.id);
+            Debug.Log("Da Nhan: " + piPiece.id);
+        }
+        else
+            btn.onClick.Invoke();
     }
 }
