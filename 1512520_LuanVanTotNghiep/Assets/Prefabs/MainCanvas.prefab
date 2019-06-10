@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224391548048374508}
   - component: {fileID: 222907855261723314}
   - component: {fileID: 114970258785461530}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 224508930468121802}
   - component: {fileID: 222048033553736298}
   - component: {fileID: 114749381961997562}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224976161160910014}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BoundBoxContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 222165872267070398}
   - component: {fileID: 114750988849730164}
   - component: {fileID: 114860269816755900}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BoundBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 224799108088263434}
   - component: {fileID: 222830698096429112}
   - component: {fileID: 114779003722704730}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 224787852091961500}
   - component: {fileID: 222365065814841546}
   - component: {fileID: 114624253922337172}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BorderContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 114363472760687494}
   - component: {fileID: 114200622076648082}
   - component: {fileID: 114038804761759476}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: MainCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 222572228776184022}
   - component: {fileID: 114385239490592970}
   - component: {fileID: 114760113626857904}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BGDes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 224604467552820408}
   - component: {fileID: 222798648499085624}
   - component: {fileID: 114391277088689520}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 222154498306086010}
   - component: {fileID: 114475427076796616}
   - component: {fileID: 95341068674065774}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EffectScan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 222770367699691932}
   - component: {fileID: 114979983171781424}
   - component: {fileID: 114215241882443932}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: IconWarning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 224186765345033490}
   - component: {fileID: 222553253965226990}
   - component: {fileID: 114099303603912548}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224959094007155816}
   - component: {fileID: 95588423952805664}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PanelDes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 224993796850459876}
   - component: {fileID: 222680181037668762}
   - component: {fileID: 114922317146391486}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 224191799439807858}
   - component: {fileID: 222517587351748694}
   - component: {fileID: 114147645875253992}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 224158683878046774}
   - component: {fileID: 222964268511697748}
   - component: {fileID: 114321917546886686}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Des
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,8 +351,8 @@ MonoBehaviour:
   isSelectMainObj: 1
   isControlling: 0
   menuInteraction: {fileID: 0}
-  screenWidth: 1280
-  screenHeight: 720
+  screenWidth: 720
+  screenHeight: 480
 --- !u!114 &114099303603912548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -996,7 +996,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1280, y: 720}
+  m_SizeDelta: {x: 720, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224228308010522454
 RectTransform:
@@ -1155,7 +1155,7 @@ RectTransform:
   m_GameObject: {fileID: 1798228026176018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children:
   - {fileID: 224799108088263434}
   - {fileID: 224186765345033490}
@@ -1184,7 +1184,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1280, y: 720}
+  m_SizeDelta: {x: 720, y: 480}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224993796850459876
 RectTransform:

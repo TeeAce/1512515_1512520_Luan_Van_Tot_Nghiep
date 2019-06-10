@@ -1,2 +1,2 @@
 id	data
-0	{"recognizeObjects":[{"x":0,"y":350,"width":200,"height":200,"score":0.99,"name":"tv","description":"Nguy hiem"}]}
+0	{"recognizeObjects":[{"x":350,"y":350,"width":200,"height":200,"score":0.99,"name":"tv","description":"Nguy hiem"}]}

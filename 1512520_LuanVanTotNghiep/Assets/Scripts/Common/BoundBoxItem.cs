@@ -34,13 +34,12 @@ public class BoundBoxItem : MonoBehaviour {
             panelBGDes.localPosition = new Vector3(panelBGDes.localPosition.x, posYDown, panelBGDes.localPosition.z);
 
         if (x < (screenWidth / 2) && y < (-screenHeight / 2)) //right top
-            line.rotation = Quaternion.Euler(0, 0, rotZRightTop);
-        else if(x >= (screenWidth / 2) && y < (-screenHeight / 2)) //left top
-            line.rotation = Quaternion.Euler(0, 0, rotZLeftTop);
-        else if(x < (screenWidth / 2) && y >= (-screenHeight / 2)) //right down
-            line.rotation = Quaternion.Euler(0, 0, rotZRightDown);
-        else if(x >= (screenWidth / 2) && y >= (-screenHeight / 2)) //left down
-            line.rotation = Quaternion.Euler(0, 0, rotZLeftDown);
-
+            line.localRotation = Quaternion.Euler(0, 0, rotZRightTop);
+        else if (x >= (screenWidth / 2) && y < (-screenHeight / 2)) //left top
+            line.localRotation = Quaternion.Euler(0, 0, rotZLeftTop);
+        else if (x < (screenWidth / 2) && y >= (-screenHeight / 2)) //right down
+            line.localRotation = Quaternion.Euler(0, 0, rotZRightDown);
+        else if (x >= (screenWidth / 2) && y >= (-screenHeight / 2)) //left down
+            line.localRotation = Quaternion.Euler(0, 0, rotZLeftDown);
     }
 }
