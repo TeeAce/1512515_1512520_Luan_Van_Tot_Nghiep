@@ -10,6 +10,7 @@ public class Client : MonoBehaviour {
     public SocketIOComponent socketIOT;
     private Dictionary<string, Features> dicObjFeatures = new Dictionary<string, Features>();
     private string currDeviceIdRequest;
+    private bool isConnected;
 
     public MenuInteractionController menuInteraction;
 
@@ -62,6 +63,7 @@ public class Client : MonoBehaviour {
 
     public void OnUserConnected(SocketIOEvent evt)
     {
+        isConnected = true;
         Debug.Log("User Connected");
     }
 
@@ -82,6 +84,8 @@ public class Client : MonoBehaviour {
             return dicObjFeatures[id];
         else
         {
+            if (!isConnected)
+                return null;
             if (currDeviceIdRequest == id)
                 return null;
             currDeviceIdRequest = id;

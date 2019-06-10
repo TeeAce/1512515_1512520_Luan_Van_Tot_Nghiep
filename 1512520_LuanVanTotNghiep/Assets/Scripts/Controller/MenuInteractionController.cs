@@ -63,6 +63,7 @@ public class MenuInteractionController : MonoBehaviour {
         if (isControlling)
             return;
 
+        Debug.Log("Id: " + recognizeObject.name);
         currFeatures = client.GetFeaturesById(recognizeObject.name);
         if (currFeatures == null)
         {
@@ -74,6 +75,9 @@ public class MenuInteractionController : MonoBehaviour {
 
         btnControll.localPosition = new Vector3(recognizeObject.x + (float)recognizeObject.width/2, -(recognizeObject.y+ (float)recognizeObject.height/2), btnControll.localPosition.z);
         btnControll.gameObject.SetActive(true);
+
+        if (UIEvent.OnUpdateUI != null)
+            UIEvent.OnUpdateUI();
 
         //Debug.Log(recognizeObject.x + " : " + recognizeObject.y +" , "+ recognizeObject.width + " : " + recognizeObject.height);
     }

@@ -276,7 +276,7 @@ public class PiUI : MonoBehaviour
         {
             if (pi.gameObject.activeInHierarchy)
             {
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
                 pi.NewManualUpdate();
 #else
                 pi.ManualUpdate( );

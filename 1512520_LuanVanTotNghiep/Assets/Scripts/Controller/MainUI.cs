@@ -9,11 +9,13 @@ public class MainUI : MonoBehaviour {
     public int currButtonIndex=-1;
 
     public MenuInteractionController menuInteraction;
+    public float timeDelay = 0.1f;
+    public float timeCountDown = 0.1f;
 
 	// Use this for initialization
 	void Start () {
         //Invoke("Test0", 2);
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
         AddListener();
         InvokeRepeating("UpdateCurrButtonSelect", 1f, 0.1f);
 #endif
@@ -136,7 +138,16 @@ public class MainUI : MonoBehaviour {
     private void InteractionSourceUpdated(InteractionSourceUpdatedEventArgs obj)
     {
         Vector2 pos = obj.state.thumbstickPosition;
-        if (pos == Vector2.zero)
+
+        if (timeCountDown>=0)
+        {
+            timeCountDown -= Time.deltaTime;
+            return;
+        }
+
+        timeCountDown = timeDelay;
+
+        if (Mathf.Abs(pos.x) < 0.4f && Mathf.Abs(pos.y) < 0.4f)
             return;
 
         if ((Mathf.Abs(pos.x) >= Mathf.Abs(pos.y) && pos.x <= 0) || (Mathf.Abs(pos.x) <= Mathf.Abs(pos.y) && pos.y <= 0))
