@@ -351,8 +351,8 @@ MonoBehaviour:
   isSelectMainObj: 1
   isControlling: 0
   menuInteraction: {fileID: 0}
-  screenWidth: 720
-  screenHeight: 480
+  screenWidth: 1080
+  screenHeight: 720
 --- !u!114 &114099303603912548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -483,7 +483,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 1080, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -619,11 +619,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: e3d8348b7d66bae4aa4b1f3ada3ef5fd, type: 3}
-    m_FontSize: 60
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 60
+    m_MaxSize: 30
     m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -985,7 +985,7 @@ RectTransform:
   m_GameObject: {fileID: 1835997231593372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224999470769358498}
   - {fileID: 224942411788491514}
@@ -996,7 +996,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 720, y: 480}
+  m_SizeDelta: {x: 1080, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224228308010522454
 RectTransform:
@@ -1184,7 +1184,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 720, y: 480}
+  m_SizeDelta: {x: 1080, y: 720}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224993796850459876
 RectTransform:

@@ -833,25 +833,10 @@ Prefab:
       propertyPath: mainController
       value: 
       objectReference: {fileID: 1862323398}
-    - target: {fileID: 224669878744933376, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+    - target: {fileID: 224765240400530390, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
         type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.21000671
-      objectReference: {fileID: 0}
-    - target: {fileID: 224669878744933376, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.04248047
-      objectReference: {fileID: 0}
-    - target: {fileID: 224182122516176246, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.20999908
-      objectReference: {fileID: 0}
-    - target: {fileID: 224182122516176246, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.042497635
+      propertyPath: m_SizeDelta.x
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 224765240400530390, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
         type: 2}
@@ -860,8 +845,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 224523858549744048, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
         type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 480
+      propertyPath: m_SizeDelta.x
+      value: 720
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb8f1c21a9f62804586c3b6b185cd4a6, type: 2}
@@ -995,6 +980,36 @@ Prefab:
       propertyPath: menuInteraction
       value: 
       objectReference: {fileID: 1153541979}
+    - target: {fileID: 224191799439807858, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 224191799439807858, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: 224976161160910014, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 224976161160910014, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: 114038804761759476, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: screenWidth
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 114038804761759476, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: screenHeight
+      value: 480
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3cce37fc3068ab40bc344648331de6c, type: 2}
   m_IsPrefabAsset: 0
