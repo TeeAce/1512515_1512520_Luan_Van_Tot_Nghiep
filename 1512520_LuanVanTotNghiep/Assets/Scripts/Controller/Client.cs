@@ -10,7 +10,7 @@ public class Client : MonoBehaviour {
     public SocketIOComponent socketIOT;
     private Dictionary<string, Features> dicObjFeatures = new Dictionary<string, Features>();
     private string currDeviceIdRequest;
-    private bool isConnected;
+    public bool isConnected;
 
     public MenuInteractionController menuInteraction;
 

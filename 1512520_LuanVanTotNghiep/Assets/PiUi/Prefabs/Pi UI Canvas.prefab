@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4127677740177966}
   - component: {fileID: 114204338487255518}
   - component: {fileID: 114961249132881464}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114894445029899696}
   - component: {fileID: 114518365577166800}
   - component: {fileID: 114494581148173954}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Pi UI Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 224422021252423170}
   - component: {fileID: 222798908042090536}
   - component: {fileID: 114093606789750332}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224871834690545698}
   - component: {fileID: 114762310795958610}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Pi Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 224850306445734336}
   - component: {fileID: 222710372653633560}
   - component: {fileID: 114466704440096572}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 114990128538550592}
   - component: {fileID: 114411447690347062}
   - component: {fileID: 114905405256037148}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PiCut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,8 +500,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f69b2b2634d43e4e8ae56cc0eda55bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
   btnImage: {fileID: 0}
+  btn: {fileID: 0}
   piPiece: {fileID: 114990128538550592}
   scaleoffset: 1.3
   colorHighLight: {r: 0.5019608, g: 0.9254902, b: 0.20392157, a: 1}

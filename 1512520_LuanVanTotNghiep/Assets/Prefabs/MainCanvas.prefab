@@ -234,7 +234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1830853423894944
 GameObject:
   m_ObjectHideFlags: 1
@@ -337,14 +337,8 @@ MonoBehaviour:
   boundBoxContainer: {fileID: 224976161160910014}
   imgBoundBox: {fileID: 114750988849730164}
   colors:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0.41960788, b: 0.627451, a: 1}
+  - {r: 0, g: 0.41960788, b: 0.627451, a: 1}
   timeDelay: 0.025
   timeCheckDelay: 0.025
   numBoundBoxActive: 0
@@ -610,7 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.41960788, b: 0.61960787, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -618,7 +612,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3d8348b7d66bae4aa4b1f3ada3ef5fd, type: 3}
+    m_Font: {fileID: 12800000, guid: c03f4cb96ba3a7143b598251535f16fb, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
@@ -642,15 +636,15 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Material: {fileID: 2100000, guid: 48386f0d8f5a1de48a9eb83a0dce54f2, type: 2}
+  m_Color: {r: 0, g: 0.41176474, b: 0.6156863, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 37d4591ae0e2cc549aec0eba1b11169e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d4e570d9b6b95445976b037dddd9baa, type: 3}
   m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -709,10 +703,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lbContent: {fileID: 114749381961997562}
-  lbDesc: {fileID: 114321917546886686}
+  lbDesc: {fileID: 0}
   panelBGDes: {fileID: 224034780131790148}
   line: {fileID: 224186765345033490}
-  panelDes: {fileID: 1798228026176018}
+  panelDes: {fileID: 0}
   posXLeft: -652.8
   posXRight: 146.9
   posYUp: 49
