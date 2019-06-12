@@ -870,7 +870,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: m_CullingMask.m_Bits
-      value: 1
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: m_ClearFlags
@@ -1652,6 +1652,26 @@ Prefab:
       propertyPath: menuInteraction
       value: 
       objectReference: {fileID: 1153541979}
+    - target: {fileID: 224191799439807858, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 224976161160910014, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 114038804761759476, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: screenWidth
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 114363472760687494, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_ReferenceResolution.x
+      value: 1280
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3cce37fc3068ab40bc344648331de6c, type: 2}
   m_IsPrefabAsset: 0
@@ -15052,6 +15072,21 @@ Prefab:
       propertyPath: mainController
       value: 
       objectReference: {fileID: 1862323398}
+    - target: {fileID: 224765240400530390, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 224523858549744048, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 114769988295915870, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+        type: 2}
+      propertyPath: m_ReferenceResolution.x
+      value: 1280
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb8f1c21a9f62804586c3b6b185cd4a6, type: 2}
   m_IsPrefabAsset: 0
