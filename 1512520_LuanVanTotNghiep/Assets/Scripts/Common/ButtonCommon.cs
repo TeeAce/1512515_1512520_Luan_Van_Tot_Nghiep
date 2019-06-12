@@ -4,49 +4,34 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonCommon : MonoBehaviour {
-    //not use for PiPiece UI
     public Image btnImage;
     public Button btn;
-
-    //only use for PiPiece UI
-    public PiPiece piPiece;
-
-    public float scaleoffset = 1.3f;
+    private float scaleoffset = 1.5f;
     public Color colorHighLight;
     public Color colorNormal;
+    public Vector3 originScale;
+
+    public void Start()
+    {
+        originScale = transform.localScale;
+    }
 
     public void OnSelected()
     {
-        if (piPiece != null)
-            piPiece.isOver = true;
-        else
-        {
-            transform.localScale = new Vector3(scaleoffset, scaleoffset, 1);
+        transform.localScale = originScale * scaleoffset;
+        if(btnImage!=null)
             btnImage.color = colorHighLight;
-        }
-
     }
 
     public void OnUnselected()
     {
-        if (piPiece != null)
-            piPiece.isOver = false;
-        else
-        {
-            transform.localScale = Vector3.one;
+        transform.localScale = originScale;
+        if (btnImage != null)
             btnImage.color = colorNormal;
-        }
     }
 
     public void OnClicked()
     {
-        if (piPiece != null)
-        {
-            if(piPiece.onClickMenu!=null)
-                piPiece.onClickMenu(piPiece.id);
-            Debug.Log("Da Nhan: " + piPiece.id);
-        }
-        else
-            btn.onClick.Invoke();
+        btn.onClick.Invoke();
     }
 }

@@ -8,15 +8,10 @@ public class MenuInteractionController : MonoBehaviour {
 
     public static MenuInteractionController Instance;
     public Client client;
-    public PiUIManager piUi;
-    private bool menuOpened;
-    private PiUI normalMenu;
-    public Color colorNormal;
-    public Color colorHightlight;
+    public RadialUI radialUI;
 
     public RectTransform btnControll;
-    public Animator btnExitControll;
-    public Animator panelDeviceInfo;
+    public GameObject btnExitControll;
     public Text nameDevice;
     public bool isControlling;
     private Features currFeatures;
@@ -28,34 +23,42 @@ public class MenuInteractionController : MonoBehaviour {
     private void Start()
     {
         MakeInstance();
-        //Get menu for easy not repetitive getting of the menu when setting joystick input
-        normalMenu = piUi.GetPiUIOf("Normal Menu");
-
-        if (normalMenu == null)
-            Debug.Log("Null");
-
-        if(mainController != null)
-        {
-            mainController.OnMainObjectDetected += OnMainObjectDetected;
-            mainController.OnNotFoundObject += OnNotFoundTarget;
-        }
+        AddListener();
 
         gameObject.GetComponent<Canvas>().sortingOrder = 1;
     }
 
     private void OnDestroy()
     {
-        if (mainController != null)
-        {
-            mainController.OnMainObjectDetected -= OnMainObjectDetected;
-            mainController.OnNotFoundObject -= OnNotFoundTarget;
-        }
+        RemoveListener();
     }
 
     private void Update()
     {
         if (isControlling && btnControll.gameObject.activeInHierarchy)
             btnControll.gameObject.SetActive(false);
+    }
+
+    private void AddListener()
+    {
+        if (mainController != null)
+        {
+            mainController.OnMainObjectDetected += OnMainObjectDetected;
+            mainController.OnNotFoundObject += OnNotFoundTarget;
+        }
+
+        RadialItem.OnItemClicked += OnClickMenu;
+    }
+
+    private void RemoveListener()
+    {
+        if (mainController != null)
+        {
+            mainController.OnMainObjectDetected -= OnMainObjectDetected;
+            mainController.OnNotFoundObject -= OnNotFoundTarget;
+        }
+
+        RadialItem.OnItemClicked -= OnClickMenu;
     }
 
     public void OnMainObjectDetected(RecognizeObject recognizeObject)
@@ -98,59 +101,14 @@ public class MenuInteractionController : MonoBehaviour {
 
     public void ShowMenuInteraction(Features f)
     {
-        //Make all angles equal 
-        normalMenu.equalSlices = true;
-        normalMenu.iconDistance = 1f;
-        //Changes the piDataLength and adds new piData
-        normalMenu.piData = new PiUI.PiData[f.features.Length];
-        for (int j = 0; j < f.features.Length; j++)
-        {
-            normalMenu.piData[j] = new PiUI.PiData();
-        }
-        //Turns of the syncing of colors
-        normalMenu.syncColors = false;
-        //Changes open/Close animations
-        normalMenu.openTransition = PiUI.TransitionType.ScaleAndFan;
-        normalMenu.closeTransition = PiUI.TransitionType.SlideRight;
-        int i = 0;
-        foreach (PiUI.PiData data in normalMenu.piData)
-        {
-            //new
-            data.id = f.features[i];
-            data.onClickMenu += OnClickMenu;
-
-            //Set new highlight/non highlight colors
-            data.nonHighlightedColor = colorNormal;
-            data.highlightedColor = colorHightlight;
-            data.disabledColor = colorNormal;
-            //Changes slice label
-            data.sliceLabel = f.features[i];
-            //Creates a new unity event and adds the testfunction to it
-            data.onSlicePressed = new UnityEngine.Events.UnityEvent();
-            data.onSlicePressed.AddListener(OnSlidePressed);
-            i += 1;
-            //Enables hoverFunctions
-            data.hoverFunctions = true;
-            //Creates a new unity event to adds on hovers function
-            data.onHoverEnter = new UnityEngine.Events.UnityEvent();
-            data.onHoverEnter.AddListener(OnHoverEnter);
-            data.onHoverExit = new UnityEngine.Events.UnityEvent();
-            data.onHoverExit.AddListener(OnHoverExit);
-        }
-        piUi.RegeneratePiMenu("Normal Menu");
-        piUi.ChangeMenuState("Normal Menu", new Vector2(Screen.width / 2f, Screen.height / 2f));
+        radialUI.InitFeatures(f);
 
         btnExitControll.gameObject.SetActive(true);
-        panelDeviceInfo.gameObject.SetActive(true);
-        btnExitControll.Play(AppConstant.INTRO_ANIM, -1, 0f);
-        panelDeviceInfo.Play(AppConstant.INTRO_ANIM, -1, 0f);
     }
 
     public void OnClickExitControll()
     {
         btnExitControll.gameObject.SetActive(false);
-        panelDeviceInfo.gameObject.SetActive(false);
-        normalMenu.ClearMenu();
 
         isControlling = false;
         if (OnControll != null)
@@ -158,21 +116,6 @@ public class MenuInteractionController : MonoBehaviour {
 
         if (UIEvent.OnUpdateUI != null)
             UIEvent.OnUpdateUI();
-    }
-
-    private void OnSlidePressed()
-    {
-        
-    }
-
-    private void OnHoverExit()
-    {
-        
-    }
-
-    private void OnHoverEnter()
-    {
-       
     }
 
     public void OnClickMenu(string id)

@@ -23,7 +23,7 @@ public class MainUI : MonoBehaviour {
 
     void Update()
     {
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.A))
         {
             if (currButtonIndex > 0)
