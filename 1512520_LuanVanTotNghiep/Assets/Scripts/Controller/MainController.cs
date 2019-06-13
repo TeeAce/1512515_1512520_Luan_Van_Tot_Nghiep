@@ -21,6 +21,8 @@ public class MainController : MonoBehaviour {
     public bool isSelectMainObj=true;
     public bool isControlling;
     public MenuInteractionController menuInteraction;
+    public GameObject panelLoading;
+    public RawImage panelShowMobile;
 
     public Action<RecognizeObject> OnMainObjectDetected;
     public Action OnNotFoundObject;
@@ -220,5 +222,21 @@ public class MainController : MonoBehaviour {
     public void OnControll(bool isControlling)
     {
         this.isControlling = isControlling;
+    }
+
+    public void ShowLoading()
+    {
+        panelLoading.SetActive(true);
+    }
+
+    public void HideLoading()
+    {
+        panelLoading.SetActive(false);
+    }
+
+    public void OnClickGetRecognize()
+    {
+        Texture2D t = fileController.GetRecognize();
+        panelShowMobile.texture = t;
     }
 }

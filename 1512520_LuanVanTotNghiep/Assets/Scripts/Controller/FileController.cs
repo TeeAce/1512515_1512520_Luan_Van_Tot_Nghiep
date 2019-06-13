@@ -9,9 +9,11 @@ using System;
 public class FileController : MonoBehaviour {
 
     public float timeDelay = 5f;
-    private float timeCountDown;
+    private float timeCountDown=5f;
     public Texture cameraTexture;
     private bool isDone;
+
+    public ClientAI clientAI;
 
     // Use this for initialization
     void Start() {
@@ -29,9 +31,9 @@ public class FileController : MonoBehaviour {
         timeCountDown -= Time.deltaTime;
         if (timeCountDown <= 0f)
         {
-            timeCountDown = timeDelay;
+            timeCountDown = 10000f;
             //Saved File
-            SaveCameraTextureAsPNG(cameraTexture, AppConstant.PATH_CAMERA_TEXTURE_OUT_PUT,"Output.png");
+            //SaveCameraTextureAsPNG(cameraTexture, AppConstant.PATH_CAMERA_TEXTURE_OUT_PUT,"Output.png");
         }
     }
 
@@ -68,6 +70,44 @@ public class FileController : MonoBehaviour {
 
         Destroy(texture2D);
         Destroy(renderTexture);
+    }
+
+    public Texture2D GetRecognize()
+    {
+        return RequestRecognize(cameraTexture, "Output.png");
+    }
+
+    public Texture2D RequestRecognize(Texture texture, string name)
+    {
+        Texture2D texture2D = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false);
+
+        RenderTexture currentRT = RenderTexture.active;
+
+        RenderTexture renderTexture = new RenderTexture(texture.width, texture.height, 32);
+        Graphics.Blit(texture, renderTexture);
+
+        RenderTexture.active = renderTexture;
+        texture2D.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+        texture2D.Apply();
+
+        //Color[] pixels = texture2D.GetPixels();
+
+        RenderTexture.active = currentRT;
+
+
+        byte[] bytes = texture2D.EncodeToJPG();
+
+        try
+        {
+            clientAI.GetRecognize(bytes, name);
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.Message);
+        }
+
+        Destroy(renderTexture);
+        return texture2D;
     }
 
     public RecognizeInputStruct LoadRecorgnizeInput()

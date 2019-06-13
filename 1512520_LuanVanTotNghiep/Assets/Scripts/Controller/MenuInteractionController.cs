@@ -66,7 +66,7 @@ public class MenuInteractionController : MonoBehaviour {
         if (isControlling)
             return;
 
-        Debug.Log("Id: " + recognizeObject.name);
+        //Debug.Log("Id: " + recognizeObject.name);
         currFeatures = client.GetFeaturesById(recognizeObject.name);
         if (currFeatures == null)
         {

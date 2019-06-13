@@ -656,6 +656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeDelay: 5
   cameraTexture: {fileID: 8400000, guid: e22a434e8559534448e49e5c78942cde, type: 2}
+  clientAI: {fileID: 0}
 --- !u!4 &640370508
 Transform:
   m_ObjectHideFlags: 0
@@ -783,7 +784,7 @@ Prefab:
       objectReference: {fileID: 640370507}
     - target: {fileID: 1177558474424362, guid: c3cce37fc3068ab40bc344648331de6c, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114749381961997562, guid: c3cce37fc3068ab40bc344648331de6c,
         type: 2}
@@ -994,6 +995,26 @@ Prefab:
         type: 2}
       propertyPath: timeCheckDelay
       value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 224993796850459876, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224158683878046774, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224787852091961500, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224297035904512304, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3cce37fc3068ab40bc344648331de6c, type: 2}
