@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonCommon : MonoBehaviour {
-    public Image btnImage;
+    public List<Image> listBtnImage = new List<Image>();
     public Button btn;
     private float scaleoffset = 1.5f;
     public Color colorHighLight;
@@ -19,15 +19,21 @@ public class ButtonCommon : MonoBehaviour {
     public void OnSelected()
     {
         transform.localScale = originScale * scaleoffset;
-        if(btnImage!=null)
-            btnImage.color = colorHighLight;
+        if(listBtnImage != null)
+        {
+            for (int i = 0; i < listBtnImage.Count; i++)
+                listBtnImage[i].color = colorHighLight;
+        }
     }
 
     public void OnUnselected()
     {
         transform.localScale = originScale;
-        if (btnImage != null)
-            btnImage.color = colorNormal;
+        if (listBtnImage != null)
+        {
+            for (int i = 0; i < listBtnImage.Count; i++)
+                listBtnImage[i].color = colorNormal;
+        }
     }
 
     public void OnClicked()

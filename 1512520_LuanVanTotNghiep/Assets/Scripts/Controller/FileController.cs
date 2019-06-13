@@ -125,7 +125,7 @@ public class FileController : MonoBehaviour {
         //delete file after read
         try
         {
-            File.Delete(Application.dataPath + "/Resources/Input/ConfigRecorgnizeInput.csv");
+            //File.Delete(Application.dataPath + "/Resources/Input/ConfigRecorgnizeInput.csv");
         }
         catch (Exception ex)
         {

@@ -25,7 +25,7 @@ public class MenuInteractionController : MonoBehaviour {
         MakeInstance();
         AddListener();
 
-        gameObject.GetComponent<Canvas>().sortingOrder = 1;
+        gameObject.GetComponent<Canvas>().sortingOrder = 100;
     }
 
     private void OnDestroy()
