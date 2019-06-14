@@ -15,7 +15,7 @@ public class MainUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //Invoke("Test0", 2);
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
         AddListener();
         InvokeRepeating("UpdateCurrButtonSelect", 1f, 0.1f);
 #endif

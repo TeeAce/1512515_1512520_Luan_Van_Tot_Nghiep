@@ -11,7 +11,7 @@ namespace KAINamespace
         public static string AssetPath = "Input/";
         public static string FilePath = "/Resources/Input/";
 
-        public ConfigRecorgnizeInput ConfigQuizData = new ConfigRecorgnizeInput();
+        public ConfigRecorgnizeInput ConfigRecorgnizeData = new ConfigRecorgnizeInput();
 
 
         private void Start()
@@ -23,7 +23,7 @@ namespace KAINamespace
 
         public void LoadRecorgnizeInput()
         {
-            ConfigQuizData.ReadFileFromPath(Application.dataPath + FilePath + "ConfigRecorgnizeInput.csv");
+            ConfigRecorgnizeData.ReadFileFromPath(Application.dataPath + FilePath + "ConfigRecorgnizeInput.csv");
 
             //RecorgnizeInputStruct data = ConfigQuizData.records[0].GetRecorgnizeInputStruct();
             //Debug.Log(string.Format("x:{0}, y:{1}, width:{2}, height:{3}", data.x, data.y, data.width, data.height));

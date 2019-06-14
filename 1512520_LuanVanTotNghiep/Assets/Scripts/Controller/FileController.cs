@@ -17,13 +17,16 @@ public class FileController : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-
+        ClearInput();
     }
 
     // Update is called once per frame
     void Update() {
         //CheckTimeCountDown();
+        //Chi Chay tren PC
+#if UNITY_EDITOR
         SaveCameraTextureAsPNG(cameraTexture, AppConstant.PATH_CAMERA_TEXTURE_OUT_PUT, "Output.png");
+#endif
     }
 
     private void CheckTimeCountDown()
@@ -113,30 +116,46 @@ public class FileController : MonoBehaviour {
     public RecognizeInputStruct LoadRecorgnizeInput()
     {
         if (KAIConfigManager.Instance == null)
+        {
             return null;
+        }
 
         KAIConfigManager.Instance.LoadRecorgnizeInput();
 
-        if (KAIConfigManager.Instance.ConfigQuizData.records.Count<=0 || KAIConfigManager.Instance.ConfigQuizData.records[0] == null)
+        if (KAIConfigManager.Instance.ConfigRecorgnizeData.records.Count<=0 || KAIConfigManager.Instance.ConfigRecorgnizeData.records[0] == null)
+        {
             return null;
+        }
 
-        RecognizeInputStruct inputData = KAIConfigManager.Instance.ConfigQuizData.records[0].GetRecorgnizeInputStruct();
+        RecognizeInputStruct inputData = KAIConfigManager.Instance.ConfigRecorgnizeData.records[0].GetRecorgnizeInputStruct();
 
         //delete file after read
         try
         {
-            //File.Delete(Application.dataPath + "/Resources/Input/ConfigRecorgnizeInput.csv");
+            File.Delete(Application.dataPath + "/Resources/Input/ConfigRecorgnizeInput.csv");
         }
         catch (Exception ex)
         {
 
         }
 
-        KAIConfigManager.Instance.ConfigQuizData = new ConfigRecorgnizeInput();
+        KAIConfigManager.Instance.ConfigRecorgnizeData = new ConfigRecorgnizeInput();
 
         //Debug.Log("Da Chay: "+ AppConstant.PATH_RECORGNIZE_IN_PUT + "ConfigRecorgnizeInput.csv");
 
         return inputData;
 
+    }
+
+    private void ClearInput()
+    {
+        try
+        {
+            File.Delete(Application.dataPath + "/Resources/Input/ConfigRecorgnizeInput.csv");
+        }
+        catch (Exception ex)
+        {
+
+        }
     }
 }

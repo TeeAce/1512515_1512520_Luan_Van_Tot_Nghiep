@@ -13,6 +13,7 @@ public class Client : MonoBehaviour {
     public bool isConnected;
 
     public MenuInteractionController menuInteraction;
+    public MainController mainController;
 
     public void Start()
     {
@@ -53,6 +54,14 @@ public class Client : MonoBehaviour {
 
         if (!dicObjFeatures.ContainsKey(id))
             dicObjFeatures[id] = f;
+        //chi cho mobile
+#if !UNITY_EDITOR
+        if (mainController == null && mainController.currRecognizeObj == null)
+            return;
+
+        if (mainController.currRecognizeObj.name == id)
+            mainController.UpdateBoundBox(mainController.currJsonData);
+#endif
     }
 
     IEnumerator CheckConnectToServer()
