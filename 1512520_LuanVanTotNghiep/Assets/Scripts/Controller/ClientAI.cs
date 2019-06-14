@@ -27,7 +27,7 @@ public class ClientAI : MonoBehaviour {
         WWWForm form = new WWWForm();
         form.AddBinaryData("image", image, name);
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.38:8000/detection-api", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.58:8000/detection-api", form))
         {
             yield return www.SendWebRequest();
 

@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEngine.XR.WSA.Input;
+#endif
 
 public class MainUI : MonoBehaviour {
     public List<ButtonCommon> listButton = new List<ButtonCommon>();
@@ -74,15 +76,19 @@ public class MainUI : MonoBehaviour {
     private void AddListener()
     {
         UIEvent.OnUpdateUI += OnUpdateUI;
+#if UNITY_EDITOR
         InteractionManager.InteractionSourcePressed += InteractionSourcePressed;
         InteractionManager.InteractionSourceUpdated += InteractionSourceUpdated;
+#endif
     }
 
     private void RemoveListener()
     {
         UIEvent.OnUpdateUI -= OnUpdateUI;
+#if UNITY_EDITOR
         InteractionManager.InteractionSourcePressed -= InteractionSourcePressed;
         InteractionManager.InteractionSourceUpdated -= InteractionSourceUpdated;
+#endif
     }
 
     public void OnUpdateUI()
@@ -134,7 +140,7 @@ public class MainUI : MonoBehaviour {
             }
         }
     }
-
+#if UNITY_EDITOR
     private void InteractionSourceUpdated(InteractionSourceUpdatedEventArgs obj)
     {
         Vector2 pos = obj.state.thumbstickPosition;
@@ -174,4 +180,5 @@ public class MainUI : MonoBehaviour {
                 listButton[currButtonIndex].OnClicked();
         }
     }
+#endif
 }

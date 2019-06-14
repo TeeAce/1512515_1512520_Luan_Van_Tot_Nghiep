@@ -3,10 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEngine.XR.WSA.Input;
+#endif
 
 public class TestMC : MonoBehaviour {
-
+#if UNITY_EDITOR
     public void Start()
     {
         InteractionManager.InteractionSourcePressed += InteractionSourcePressed;
@@ -25,4 +27,5 @@ public class TestMC : MonoBehaviour {
         if (obj.pressType == InteractionSourcePressType.Touchpad)
             Debug.Log("Position: " + obj.state.touchpadPosition);
     }
+#endif
 }
