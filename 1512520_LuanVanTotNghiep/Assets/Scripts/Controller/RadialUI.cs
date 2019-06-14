@@ -14,6 +14,8 @@ public class RadialUI : MonoBehaviour {
     void Start()
     {
         AddListener();
+
+        gameObject.GetComponent<Canvas>().sortingOrder = 101;
     }
 
     void OnDestroy()
