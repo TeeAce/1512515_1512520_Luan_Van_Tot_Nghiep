@@ -6,9 +6,21 @@ using SocketIO;
 using System.Runtime.InteropServices;
 using System;
 using Plugins.SystemVolumePlugin;
+using PPt = Microsoft.Office.Interop.PowerPoint;
+using System.Runtime.InteropServices;
+using Microsoft.Office.Core;
+using System.IO;
+using UnityEngine.UI;
 
 public class ClientControllPC : MonoBehaviour {
     public SocketIOComponent socketIO;
+
+    PPt.Application pptApplication = null;
+    PPt.Presentation presentation = null;
+    PPt.Slides slides = null;
+    PPt.Slide slide = null;
+    int slidescount;
+    int slideIndex;
 
     public void Start()
     {
@@ -25,6 +37,10 @@ public class ClientControllPC : MonoBehaviour {
         socketIO.On(FEATURE.CLOSE_PAINT, ClosePaint);
         socketIO.On(FEATURE.UP_VOLUME, UpVolume);
         socketIO.On(FEATURE.DOWN_VOLUME, DownVolume);
+        socketIO.On(FEATURE.BEGIN_PRESENTATION, BeginPresentation);
+        socketIO.On(FEATURE.END_PRESENTATION, EndPresentation);
+        socketIO.On(FEATURE.NEXT_SLIDE, NextSlide);
+        socketIO.On(FEATURE.PREV_SLIDE, PrevSlide);
 
         socketIO.On("REGIS_SUCCESS", OnRegisSuccess);
     }
@@ -70,5 +86,136 @@ public class ClientControllPC : MonoBehaviour {
     public void DownVolume(SocketIOEvent socketIOEvent)
     {
         SystemVolumePlugin.SetVolume(SystemVolumePlugin.GetVolume() - 0.02f);
+    }
+
+    /// <summary> 
+    /// Check whether PowerPoint is running  
+    /// </summary> 
+    /// <param name="sender"></param> 
+    /// <param name="e"></param> 
+    private void CheckPowerPoint()
+    {
+        try
+        {
+            // Get Running PowerPoint Application object 
+            pptApplication = Marshal.GetActiveObject("PowerPoint.Application") as PPt.Application;
+        }
+        catch(Exception ex)
+        {
+            pptApplication = new PPt.Application();
+            pptApplication.Visible = MsoTriState.msoTrue;
+        }
+
+        if (pptApplication != null)
+        {
+            // Get Presentation Object 
+            presentation = pptApplication.ActivePresentation;
+            // Get Slide collection object 
+            slides = presentation.Slides;
+            // Get Slide count 
+            slidescount = slides.Count;
+            // Get current selected slide  
+            try
+            {
+                // Get selected slide object in normal view 
+                slide = slides[pptApplication.ActiveWindow.Selection.SlideRange.SlideNumber];
+                if (slide == null)
+                    UnityEngine.Debug.Log("Null");
+            }
+            catch
+            {
+                // Get selected slide object in reading view 
+                slide = pptApplication.SlideShowWindows[1].View.Slide;
+
+                if (slide == null)
+                    UnityEngine.Debug.Log("Null");
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.Log("Not Found");
+        }
+    }
+
+    //Begin Presentation
+    public void BeginPresentation(SocketIOEvent socketIOEvent)
+    {
+        CheckPowerPoint();
+
+        if (pptApplication == null)
+            return;
+
+        pptApplication.Activate();
+        PPt.SlideShowSettings slideShowSettings = presentation.SlideShowSettings;
+        slideShowSettings.Run();
+    }
+
+    //End Presentation
+    public void EndPresentation(SocketIOEvent socketIOEvent)
+    {
+        CheckPowerPoint();
+
+        if (pptApplication == null)
+            return;
+
+        pptApplication.Activate();
+        PPt.SlideShowWindow slideShowWindow = presentation.SlideShowWindow;
+        slideShowWindow.View.Exit();
+    }
+
+    // Transform to next page 
+    public void NextSlide(SocketIOEvent socketIOEvent)
+    {
+        CheckPowerPoint();
+
+        if (pptApplication == null)
+            return;
+
+        slideIndex = slide.SlideIndex + 1;
+        if (slideIndex > slidescount)
+        {
+            UnityEngine.Debug.Log("It is already last page");
+        }
+        else
+        {
+            try
+            {
+                slide = slides[slideIndex];
+                slides[slideIndex].Select();
+            }
+            catch
+            {
+                pptApplication.SlideShowWindows[1].View.Next();
+                slide = pptApplication.SlideShowWindows[1].View.Slide;
+            }
+        }
+    }
+
+    // Transform to Last page 
+    public void PrevSlide(SocketIOEvent socketIOEvent)
+    {
+        CheckPowerPoint();
+
+        if (pptApplication == null)
+            return;
+
+        slideIndex = slide.SlideIndex - 1;
+        if (slideIndex >= 1)
+        {
+            try
+            {
+                slide = slides[slideIndex];
+                slides[slideIndex].Select();
+            }
+            catch
+            {
+                pptApplication.SlideShowWindows[1].View.Previous();
+                slide = pptApplication.SlideShowWindows[1].View.Slide;
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.Log("It is already Fist Page");
+        }
     }
 }

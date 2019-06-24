@@ -31,6 +31,12 @@ public class FEATURE
     public static string OPEN_PAINT             = "Open Paint";
     public static string CLOSE_NOTEPAD          = "Close Notepad";
     public static string CLOSE_PAINT            = "Close Paint";
+
     public static string UP_VOLUME              = "Up Volume";
     public static string DOWN_VOLUME            = "Down Volume";
+
+    public static string BEGIN_PRESENTATION     = "Begin Presentation";
+    public static string END_PRESENTATION       = "End Presentation";
+    public static string PREV_SLIDE             = "Prev Slide";
+    public static string NEXT_SLIDE             = "Next Slide";
 }
