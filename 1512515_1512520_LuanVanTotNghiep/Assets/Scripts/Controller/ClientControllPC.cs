@@ -22,6 +22,9 @@ public class ClientControllPC : MonoBehaviour {
     int slidescount;
     int slideIndex;
 
+    [DllImport("Powrprof.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+    public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
+
     public void Start()
     {
         AddListener();
@@ -31,6 +34,7 @@ public class ClientControllPC : MonoBehaviour {
 
     public void AddListener()
     {
+        socketIO.On(FEATURE.SLEEP, Sleep);
         socketIO.On(FEATURE.OPEN_NOTEPAD, OpenNotePad);
         socketIO.On(FEATURE.OPEN_PAINT, OpenPaint);
         socketIO.On(FEATURE.CLOSE_NOTEPAD, CloseNotePad);
@@ -61,6 +65,11 @@ public class ClientControllPC : MonoBehaviour {
     public void RequestGetVolume(SocketIOEvent socketIOEvent)
     {
         //Send Volume To Server
+    }
+
+    public void Sleep(SocketIOEvent socketIOEvent)
+    {
+        SetSuspendState(false, true, true);
     }
 
     public void OpenNotePad(SocketIOEvent socketIOEvent)

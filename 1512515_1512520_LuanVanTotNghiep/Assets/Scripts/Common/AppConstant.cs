@@ -32,6 +32,7 @@ public class MS_SERVER_TO_CLIENT
 public class FEATURE
 {
     //For PC
+    public static string SLEEP                  = "Sleep";
     public static string OPEN_NOTEPAD           = "Open Notepad";
     public static string OPEN_PAINT             = "Open Paint";
     public static string CLOSE_NOTEPAD          = "Close Notepad";
