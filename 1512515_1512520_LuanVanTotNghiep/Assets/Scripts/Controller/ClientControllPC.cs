@@ -43,6 +43,8 @@ public class ClientControllPC : MonoBehaviour {
         socketIO.On(FEATURE.PREV_SLIDE, PrevSlide);
 
         socketIO.On("REGIS_SUCCESS", OnRegisSuccess);
+
+        socketIO.On(MS_SERVER_TO_CLIENT.REQUEST_GET_VOLUME, RequestGetVolume);
     }
 
     IEnumerator RegisIOT()
@@ -54,6 +56,11 @@ public class ClientControllPC : MonoBehaviour {
     public void OnRegisSuccess(SocketIOEvent socketIOEvent)
     {
         UnityEngine.Debug.Log("Regis Success");
+    }
+
+    public void RequestGetVolume(SocketIOEvent socketIOEvent)
+    {
+        //Send Volume To Server
     }
 
     public void OpenNotePad(SocketIOEvent socketIOEvent)

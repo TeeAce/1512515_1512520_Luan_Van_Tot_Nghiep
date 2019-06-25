@@ -19,6 +19,7 @@ public class MenuInteractionController : MonoBehaviour {
 
     public Action<string> OnClickFeature;
     public Action<bool> OnControll;
+    private string prevDevice;
 
     private void Start()
     {
@@ -64,7 +65,10 @@ public class MenuInteractionController : MonoBehaviour {
     public void OnMainObjectDetected(RecognizeObject recognizeObject)
     {
         if (isControlling)
+        {
+            prevDevice = "";
             return;
+        }
 
         //Debug.Log("Id: " + recognizeObject.name);
         currFeatures = client.GetFeaturesById(recognizeObject.name);
@@ -83,6 +87,12 @@ public class MenuInteractionController : MonoBehaviour {
             UIEvent.OnUpdateUI();
 
         //Debug.Log(recognizeObject.x + " : " + recognizeObject.y +" , "+ recognizeObject.width + " : " + recognizeObject.height);
+#if !UNITY_EDITOR
+        if (recognizeObject.name == AppConstant.SPEAKER && prevDevice != AppConstant.SPEAKER)
+            client.GetSpeakerVolume();
+#endif
+
+        prevDevice = recognizeObject.name;
     }
 
 

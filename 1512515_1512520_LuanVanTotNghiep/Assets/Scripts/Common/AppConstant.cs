@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class AppConstant{
 
-    public static string PATH_CAMERA_TEXTURE_OUT_PUT = Application.dataPath+ "/Resources/Output/";
-    public static string PATH_RECORGNIZE_IN_PUT = Application.dataPath + "/Resources/Input/";
-    public static string PATH_ICON = "Icon/";
+    public static string PATH_CAMERA_TEXTURE_OUT_PUT    = Application.dataPath+ "/Resources/Output/";
+    public static string PATH_RECORGNIZE_IN_PUT         = Application.dataPath + "/Resources/Input/";
+    public static string PATH_ICON                      = "Icon/";
 
-    public static string INTRO_ANIM = "Intro";
+    public static string INTRO_ANIM                     = "Intro";
+
+    public static string SPEAKER                        = "speaker";
 }
 
 public class MS_CLIENT_TO_SERVER
@@ -16,12 +18,14 @@ public class MS_CLIENT_TO_SERVER
     public static string CHECK_CONNECTED        = "CHECK_CONNECTED";
     public static string CLIENT_TO_SERVER       = "CLIENT_TO_SERVER";
     public static string REQUEST_FEATURE        = "REQUEST_FEATURE";
+    public static string REQUEST_GET_VOLUME     = "REQUEST_GET_VOLUME";
 }
 
 public class MS_SERVER_TO_CLIENT
 {
     public static string USER_CONNECTED         = "USER_CONNECTED";
     public static string RESPONSE_FEATURE       = "RESPONSE_FEATURE";
+    public static string REQUEST_GET_VOLUME     = "REQUEST_GET_VOLUME";
 
 }
 

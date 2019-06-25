@@ -118,6 +118,11 @@ public class Client : MonoBehaviour {
         Debug.Log("Excuted " + feature);
         socketIOT.Emit(feature);
     }
+
+    public void GetSpeakerVolume()
+    {
+        socketIOT.Emit(MS_CLIENT_TO_SERVER.REQUEST_GET_VOLUME);
+    }
 }
 
 public class Features
