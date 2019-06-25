@@ -339,7 +339,7 @@ public class MainController : MonoBehaviour {
             panelLoading.SetActive(false);
             btnGetRecognize.SetActive(false);
             btnBack.SetActive(false);
-            panelShowMobile.gameObject.SetActive(true);
+            panelShowMobile.gameObject.SetActive(false);
         }
         else
         {
