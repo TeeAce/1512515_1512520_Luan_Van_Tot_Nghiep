@@ -50,7 +50,10 @@ public class RadialUI : MonoBehaviour {
         for(int i=0;i<f.features.Length;i++)
         {
             RadialItem item = Instantiate(itemPrefab, panelButton);
-            item.SetData(f.features[i], listIcon[0],(float)(360*i) / f.features.Length);
+            Sprite itemIcon = Resources.Load<Sprite>(AppConstant.PATH_ICON + f.features[i]);
+            if (itemIcon == null)
+                itemIcon = listIcon[0];
+            item.SetData(f.features[i], itemIcon, (float)(360*i) / f.features.Length);
             item.gameObject.SetActive(true);
         }
     }

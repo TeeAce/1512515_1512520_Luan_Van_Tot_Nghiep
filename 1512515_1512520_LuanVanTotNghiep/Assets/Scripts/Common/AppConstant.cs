@@ -6,6 +6,7 @@ public class AppConstant{
 
     public static string PATH_CAMERA_TEXTURE_OUT_PUT = Application.dataPath+ "/Resources/Output/";
     public static string PATH_RECORGNIZE_IN_PUT = Application.dataPath + "/Resources/Input/";
+    public static string PATH_ICON = "Icon/";
 
     public static string INTRO_ANIM = "Intro";
 }
