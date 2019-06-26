@@ -843,7 +843,7 @@ Prefab:
     - target: {fileID: 2000000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 8400000, guid: e22a434e8559534448e49e5c78942cde, type: 2}
+      objectReference: {fileID: 8400000, guid: b16441473f1abac42a86b04b47803b69, type: 2}
     - target: {fileID: 2000000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: m_BackGroundColor.r
       value: 0
@@ -8781,7 +8781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDelay: 2
-  cameraTexture: {fileID: 8400000, guid: e22a434e8559534448e49e5c78942cde, type: 2}
+  cameraTexture: {fileID: 8400000, guid: b16441473f1abac42a86b04b47803b69, type: 2}
   clientAI: {fileID: 367340572}
 --- !u!4 &192776675
 Transform:
@@ -33892,6 +33892,11 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 99.6
       objectReference: {fileID: 0}
+    - target: {fileID: 114147645875253992, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: b16441473f1abac42a86b04b47803b69, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3cce37fc3068ab40bc344648331de6c, type: 2}
   m_IsPrefabAsset: 0
