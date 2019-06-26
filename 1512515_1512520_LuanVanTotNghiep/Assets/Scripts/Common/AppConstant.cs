@@ -19,6 +19,7 @@ public class MS_CLIENT_TO_SERVER
     public static string CLIENT_TO_SERVER       = "CLIENT_TO_SERVER";
     public static string REQUEST_FEATURE        = "REQUEST_FEATURE";
     public static string REQUEST_GET_VOLUME     = "REQUEST_GET_VOLUME";
+    public static string UPDATE_VOLUME          = "UPDATE_VOLUME";
 }
 
 public class MS_SERVER_TO_CLIENT

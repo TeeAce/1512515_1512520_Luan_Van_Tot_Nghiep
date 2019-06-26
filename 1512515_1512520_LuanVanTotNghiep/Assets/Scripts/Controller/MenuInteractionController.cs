@@ -87,10 +87,10 @@ public class MenuInteractionController : MonoBehaviour {
             UIEvent.OnUpdateUI();
 
         //Debug.Log(recognizeObject.x + " : " + recognizeObject.y +" , "+ recognizeObject.width + " : " + recognizeObject.height);
-#if !UNITY_EDITOR
-        if (recognizeObject.name == AppConstant.SPEAKER && prevDevice != AppConstant.SPEAKER)
-            client.GetSpeakerVolume();
-#endif
+//#if !UNITY_EDITOR
+//        if (recognizeObject.name == AppConstant.SPEAKER && prevDevice != AppConstant.SPEAKER)
+//            client.GetSpeakerVolume();
+//#endif
 
         prevDevice = recognizeObject.name;
     }

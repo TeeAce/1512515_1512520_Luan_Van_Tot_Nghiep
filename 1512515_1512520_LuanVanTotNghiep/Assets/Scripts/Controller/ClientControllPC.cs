@@ -14,6 +14,7 @@ using UnityEngine.UI;
 
 public class ClientControllPC : MonoBehaviour {
     public SocketIOComponent socketIO;
+    private float prevVolume;
 
     PPt.Application pptApplication = null;
     PPt.Presentation presentation = null;
@@ -30,6 +31,8 @@ public class ClientControllPC : MonoBehaviour {
         AddListener();
         StartCoroutine(RegisIOT());
         SystemVolumePlugin.InitializeVolume();
+
+        InvokeRepeating("UpdateVolume", 3f, 1f);
     }
 
     public void AddListener()
@@ -49,6 +52,18 @@ public class ClientControllPC : MonoBehaviour {
         socketIO.On("REGIS_SUCCESS", OnRegisSuccess);
 
         socketIO.On(MS_SERVER_TO_CLIENT.REQUEST_GET_VOLUME, RequestGetVolume);
+    }
+
+    void UpdateVolume()
+    {
+        float volume = SystemVolumePlugin.GetVolume() * 100;
+        if (prevVolume == volume)
+            return;
+        prevVolume = volume;
+
+        Dictionary<string, string> data = new Dictionary<string, string>();
+        data["volume"] = volume.ToString();
+        socketIO.Emit(MS_CLIENT_TO_SERVER.UPDATE_VOLUME, new JSONObject(data));
     }
 
     IEnumerator RegisIOT()
