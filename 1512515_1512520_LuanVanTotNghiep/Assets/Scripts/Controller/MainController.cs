@@ -340,6 +340,9 @@ public class MainController : MonoBehaviour {
             btnGetRecognize.SetActive(false);
             btnBack.SetActive(false);
             panelShowMobile.gameObject.SetActive(false);
+
+            //clear all bound box
+            ClearAllChild(boundBoxContainer);
         }
         else
         {
