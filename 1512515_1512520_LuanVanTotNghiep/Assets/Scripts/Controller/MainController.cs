@@ -127,7 +127,7 @@ public class MainController : MonoBehaviour {
                 if (OnMainObjectDetected != null)
                     OnMainObjectDetected(data.recognizeObjects[0]);
 
-                Debug.Log(data.recognizeObjects[0].x + ":" + (data.recognizeObjects[0].y));
+                //Debug.Log(data.recognizeObjects[0].x + ":" + (data.recognizeObjects[0].y));
             }
         }
 
