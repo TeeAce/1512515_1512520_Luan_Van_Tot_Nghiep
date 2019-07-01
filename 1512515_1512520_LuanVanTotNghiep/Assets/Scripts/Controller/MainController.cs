@@ -33,6 +33,9 @@ public class MainController : MonoBehaviour {
     [HideInInspector]
     public RecognizeObject currRecognizeObj;
     public string currJsonData;
+    private string prevObj;
+    public BOUNDBOX_ANIM boundBoxAnim;
+    public APPLICATION_TYPE appType;
 
 	// Use this for initialization
 	void Start () {
@@ -123,14 +126,16 @@ public class MainController : MonoBehaviour {
 
                 if (OnMainObjectDetected != null)
                     OnMainObjectDetected(data.recognizeObjects[0]);
+
+                Debug.Log(data.recognizeObjects[0].x + ":" + (data.recognizeObjects[0].y));
             }
         }
 
         for (int i = 0; i < Mathf.Min(data.recognizeObjects.Length, boundBoxContainer.childCount); i++)
         {
-            Image boundBoxItem = boundBoxContainer.GetChild(i).GetComponent<Image>();
-            boundBoxItem.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x, -(data.recognizeObjects[i].y), boundBoxItem.rectTransform.localPosition.z);
-            boundBoxItem.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
+            Image itemObj = boundBoxContainer.GetChild(i).GetComponent<Image>();
+            itemObj.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x + data.recognizeObjects[i].width/2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height/2), itemObj.rectTransform.localPosition.z);
+            itemObj.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.rectTransform.sizeDelta= new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //add list
             string objectName = data.recognizeObjects[i].name.ToUpper();
@@ -140,20 +145,33 @@ public class MainController : MonoBehaviour {
                 typeTargetCount++;
             }
 
-            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
+            BoundBoxItem boundBoxItem = itemObj.GetComponent<BoundBoxItem>();
+            boundBoxItem.lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.color= colors[listTargets[objectName] % colors.Count];
-            boundBoxItem.GetComponent<BoundBoxItem>().lbDesc.text = data.recognizeObjects[i].description;
-            boundBoxItem.GetComponent<BoundBoxItem>().OptimizeDes(data.recognizeObjects[i].x + data.recognizeObjects[i].width/2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height/2), screenWidth, screenHeight);
-            boundBoxItem.GetComponent<BoundBoxItem>().panelDes.SetActive(data.recognizeObjects[i].description != "");
-            boundBoxItem.color = colors[listTargets[objectName] % colors.Count];
-            boundBoxItem.gameObject.SetActive(true);
+            boundBoxItem.lbDesc.text = data.recognizeObjects[i].description;
+            boundBoxItem.UpdateBoundBoxByAnim(boundBoxAnim, data.recognizeObjects[i].width, data.recognizeObjects[i].height);
+            boundBoxItem.OptimizeDes(data.recognizeObjects[i].x + data.recognizeObjects[i].width/2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height/2), screenWidth, screenHeight);
+            boundBoxItem.panelDes.alpha = (data.recognizeObjects[i].description != "") ? 1 : 0;
+            itemObj.color = colors[listTargets[objectName] % colors.Count];
+            itemObj.gameObject.SetActive(true);
+
+            //show anim des
+            if(prevObj!= objectName)
+            {
+                boundBoxItem.GetComponent<Animator>().Play(boundBoxAnim.ToString(), -1, 0f);
+                boundBoxItem.panelDesAnim.Play((boundBoxItem.panelBGDes.localPosition.x <= 0) ? AppConstant.ACTIVE_LEFT_ANIM : AppConstant.ACTIVE_RIGHT_ANIM,-1,0f);
+                prevObj = objectName;
+            }
+
+            //Set up for every application
+            SetUpForApplication(boundBoxItem);
         }
 
         for (int i = boundBoxContainer.childCount; i < data.recognizeObjects.Length; i++)
         {
-            Image boundBoxItem = Instantiate(imgBoundBox, boundBoxContainer);
-            boundBoxItem.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x, -(data.recognizeObjects[i].y), boundBoxItem.rectTransform.localPosition.z);
-            boundBoxItem.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
+            Image itemObj = Instantiate(imgBoundBox, boundBoxContainer);
+            itemObj.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x + data.recognizeObjects[i].width / 2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height / 2), itemObj.rectTransform.localPosition.z);
+            itemObj.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //add list
             string objectName = data.recognizeObjects[i].name.ToUpper();
@@ -163,13 +181,26 @@ public class MainController : MonoBehaviour {
                 typeTargetCount++;
             }
 
-            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
+            BoundBoxItem boundBoxItem = itemObj.GetComponent<BoundBoxItem>();
+            boundBoxItem.lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.color = colors[listTargets[objectName] % colors.Count];
-            boundBoxItem.GetComponent<BoundBoxItem>().lbDesc.text = data.recognizeObjects[i].description;
-            boundBoxItem.GetComponent<BoundBoxItem>().OptimizeDes(data.recognizeObjects[i].x + data.recognizeObjects[i].width / 2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height / 2), screenWidth, screenHeight);
-            boundBoxItem.GetComponent<BoundBoxItem>().panelDes.SetActive(data.recognizeObjects[i].description != "");
-            boundBoxItem.color = colors[listTargets[objectName] % colors.Count];
-            boundBoxItem.gameObject.SetActive(true);
+            boundBoxItem.lbDesc.text = data.recognizeObjects[i].description;
+            boundBoxItem.UpdateBoundBoxByAnim(boundBoxAnim, data.recognizeObjects[i].width, data.recognizeObjects[i].height);
+            boundBoxItem.OptimizeDes(data.recognizeObjects[i].x + data.recognizeObjects[i].width / 2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height / 2), screenWidth, screenHeight);
+            boundBoxItem.panelDes.alpha = (data.recognizeObjects[i].description != "") ? 1 : 0;
+            itemObj.color = colors[listTargets[objectName] % colors.Count];
+            itemObj.gameObject.SetActive(true);
+
+            //show anim des
+            if (prevObj != objectName)
+            {
+                boundBoxItem.GetComponent<Animator>().Play(boundBoxAnim.ToString(), -1, 0f);
+                boundBoxItem.panelDesAnim.Play((boundBoxItem.panelBGDes.localPosition.x <= 0) ? AppConstant.ACTIVE_LEFT_ANIM : AppConstant.ACTIVE_RIGHT_ANIM, -1, 0f);
+                prevObj = objectName;
+            }
+
+            //Set up for every application
+            SetUpForApplication(boundBoxItem);
         }
 
         UpdateNumBoundBoxActive();
@@ -230,9 +261,9 @@ public class MainController : MonoBehaviour {
 
         for (int i = 0; i < Mathf.Min(data.recognizeObjects.Length, boundBoxContainer.childCount); i++)
         {
-            Image boundBoxItem = boundBoxContainer.GetChild(i).GetComponent<Image>();
-            boundBoxItem.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x, -(data.recognizeObjects[i].y), boundBoxItem.rectTransform.localPosition.z);
-            boundBoxItem.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
+            Image itemObj = boundBoxContainer.GetChild(i).GetComponent<Image>();
+            itemObj.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x + data.recognizeObjects[i].width / 2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height / 2), itemObj.rectTransform.localPosition.z);
+            itemObj.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.rectTransform.sizeDelta= new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //add list
             string objectName = data.recognizeObjects[i].name.ToUpper();
@@ -242,20 +273,33 @@ public class MainController : MonoBehaviour {
                 typeTargetCount++;
             }
 
-            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
+            BoundBoxItem boundBoxItem = itemObj.GetComponent<BoundBoxItem>();
+            boundBoxItem.lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.color= colors[listTargets[objectName] % colors.Count];
-            boundBoxItem.GetComponent<BoundBoxItem>().lbDesc.text = data.recognizeObjects[i].description;
-            boundBoxItem.GetComponent<BoundBoxItem>().OptimizeDes(data.recognizeObjects[i].x + data.recognizeObjects[i].width / 2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height / 2), screenWidth, screenHeight);
-            boundBoxItem.GetComponent<BoundBoxItem>().panelDes.SetActive(data.recognizeObjects[i].description != "");
-            boundBoxItem.color = colors[listTargets[objectName] % colors.Count];
-            boundBoxItem.gameObject.SetActive(true);
+            boundBoxItem.lbDesc.text = data.recognizeObjects[i].description;
+            boundBoxItem.UpdateBoundBoxByAnim(boundBoxAnim, data.recognizeObjects[i].width, data.recognizeObjects[i].height);
+            boundBoxItem.OptimizeDes(data.recognizeObjects[i].x + data.recognizeObjects[i].width / 2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height / 2), screenWidth, screenHeight);
+            boundBoxItem.panelDes.alpha = (data.recognizeObjects[i].description != "") ? 1 : 0;
+            itemObj.color = colors[listTargets[objectName] % colors.Count];
+            itemObj.gameObject.SetActive(true);
+
+            //show anim des
+            if (prevObj != objectName)
+            {
+                boundBoxItem.GetComponent<Animator>().Play(boundBoxAnim.ToString(), -1, 0f);
+                boundBoxItem.panelDesAnim.Play((boundBoxItem.panelBGDes.localPosition.x <= 0) ? AppConstant.ACTIVE_LEFT_ANIM : AppConstant.ACTIVE_RIGHT_ANIM, -1, 0f);
+                prevObj = objectName;
+            }
+
+            //Set up for every application
+            SetUpForApplication(boundBoxItem);
         }
 
         for (int i = boundBoxContainer.childCount; i < data.recognizeObjects.Length; i++)
         {
-            Image boundBoxItem = Instantiate(imgBoundBox, boundBoxContainer);
-            boundBoxItem.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x, -(data.recognizeObjects[i].y), boundBoxItem.rectTransform.localPosition.z);
-            boundBoxItem.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
+            Image itemObj = Instantiate(imgBoundBox, boundBoxContainer);
+            itemObj.rectTransform.localPosition = new Vector3(data.recognizeObjects[i].x + data.recognizeObjects[i].width / 2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height / 2), itemObj.rectTransform.localPosition.z);
+            itemObj.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.rectTransform.sizeDelta = new Vector2(data.recognizeObjects[i].width, data.recognizeObjects[i].height);
             //add list
             string objectName = data.recognizeObjects[i].name.ToUpper();
@@ -265,13 +309,26 @@ public class MainController : MonoBehaviour {
                 typeTargetCount++;
             }
 
-            boundBoxItem.GetComponent<BoundBoxItem>().lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
+            BoundBoxItem boundBoxItem = itemObj.GetComponent<BoundBoxItem>();
+            boundBoxItem.lbContent.text = string.Format("{0} {1}%", objectName, (int)(data.recognizeObjects[i].score * 100));
             //boundBoxItem.GetComponent<BoundBoxItem>().lbContent.color = colors[listTargets[objectName] % colors.Count];
-            boundBoxItem.GetComponent<BoundBoxItem>().lbDesc.text = data.recognizeObjects[i].description;
-            boundBoxItem.GetComponent<BoundBoxItem>().OptimizeDes(data.recognizeObjects[i].x + data.recognizeObjects[i].width / 2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height / 2), screenWidth, screenHeight);
-            boundBoxItem.GetComponent<BoundBoxItem>().panelDes.SetActive(data.recognizeObjects[i].description != "");
-            boundBoxItem.color = colors[listTargets[objectName] % colors.Count];
-            boundBoxItem.gameObject.SetActive(true);
+            boundBoxItem.lbDesc.text = data.recognizeObjects[i].description;
+            boundBoxItem.UpdateBoundBoxByAnim(boundBoxAnim, data.recognizeObjects[i].width, data.recognizeObjects[i].height);
+            boundBoxItem.OptimizeDes(data.recognizeObjects[i].x + data.recognizeObjects[i].width / 2, -(data.recognizeObjects[i].y + data.recognizeObjects[i].height / 2), screenWidth, screenHeight);
+            boundBoxItem.panelDes.alpha = (data.recognizeObjects[i].description != "") ? 1 : 0;
+            itemObj.color = colors[listTargets[objectName] % colors.Count];
+            itemObj.gameObject.SetActive(true);
+
+            //show anim des
+            if (prevObj != objectName)
+            {
+                boundBoxItem.GetComponent<Animator>().Play(boundBoxAnim.ToString(), -1, 0f);
+                boundBoxItem.panelDesAnim.Play((boundBoxItem.panelBGDes.localPosition.x <= 0) ? AppConstant.ACTIVE_LEFT_ANIM : AppConstant.ACTIVE_RIGHT_ANIM, -1, 0f);
+                prevObj = objectName;
+            }
+
+            //Set up for every application
+            SetUpForApplication(boundBoxItem);
         }
 
         UpdateNumBoundBoxActive();
@@ -388,5 +445,11 @@ public class MainController : MonoBehaviour {
 
         if (OnNotFoundObject != null)
             OnNotFoundObject();
+    }
+
+    public void SetUpForApplication(BoundBoxItem boundBoxItem)
+    {
+        if(appType == APPLICATION_TYPE.Control)
+            boundBoxItem.panelDes.alpha = 0;
     }
 }

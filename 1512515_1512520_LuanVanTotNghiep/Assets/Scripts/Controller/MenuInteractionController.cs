@@ -42,7 +42,7 @@ public class MenuInteractionController : MonoBehaviour {
 
     private void AddListener()
     {
-        if (mainController != null)
+        if (mainController != null && mainController.appType == APPLICATION_TYPE.Control)
         {
             mainController.OnMainObjectDetected += OnMainObjectDetected;
             mainController.OnNotFoundObject += OnNotFoundTarget;
@@ -53,7 +53,7 @@ public class MenuInteractionController : MonoBehaviour {
 
     private void RemoveListener()
     {
-        if (mainController != null)
+        if (mainController != null && mainController.appType == APPLICATION_TYPE.Control)
         {
             mainController.OnMainObjectDetected -= OnMainObjectDetected;
             mainController.OnNotFoundObject -= OnNotFoundTarget;

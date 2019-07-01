@@ -9,7 +9,9 @@ public class BoundBoxItem : MonoBehaviour {
     public Text lbDesc;
     public RectTransform panelBGDes;
     public RectTransform line;
-    public GameObject panelDes;
+    public CanvasGroup panelDes;
+    public Animator panelDesAnim;
+    public AspectRatioFitter ratio;
     public float posXLeft;
     public float posXRight;
     public float posYUp;
@@ -41,5 +43,13 @@ public class BoundBoxItem : MonoBehaviour {
             line.localRotation = Quaternion.Euler(0, 0, rotZRightDown);
         else if (x >= (screenWidth / 2) && y >= (-screenHeight / 2)) //left down
             line.localRotation = Quaternion.Euler(0, 0, rotZLeftDown);
+    }
+
+    public void UpdateBoundBoxByAnim(BOUNDBOX_ANIM boundBoxAnim, float width, float height)
+    {
+        if (boundBoxAnim == BOUNDBOX_ANIM.BoundBoxRect)
+            ratio.aspectMode = AspectRatioFitter.AspectMode.None;
+        else if(boundBoxAnim == BOUNDBOX_ANIM.BoundBoxCircle)
+            ratio.aspectMode = ((width <= height) ? AspectRatioFitter.AspectMode.WidthControlsHeight : AspectRatioFitter.AspectMode.HeightControlsWidth);
     }
 }

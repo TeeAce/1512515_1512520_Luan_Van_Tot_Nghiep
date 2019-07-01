@@ -5,13 +5,13 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PanelDes
+  m_Name: BoundBox
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
-    m_StateMachine: {fileID: 1107015634889117526}
+    m_StateMachine: {fileID: 1107938478089254964}
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
@@ -21,13 +21,13 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &1102147351708634428
+--- !u!1102 &1102003278185235558
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ActiveLeft
+  m_Name: BoundBoxCircle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -40,19 +40,19 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 31ae2565191136943b6a2311da5f03a9, type: 2}
+  m_Motion: {fileID: 7400000, guid: c98b7f03fd5c8a8428b49d900e96dab8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1102256156908632810
+--- !u!1102 &1102354814042613952
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: DefaultActive
+  m_Name: BoundBoxRect
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -65,19 +65,19 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d59b2261f429d1147acdcf7270502fd6, type: 2}
+  m_Motion: {fileID: 7400000, guid: 50dc7ab811acb3143958c7bdbe0ae53a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1102798999325402626
+--- !u!1102 &1102547381398257378
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ActiveRight
+  m_Name: BoundBoxDefault
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -90,13 +90,13 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 06edf67b7720ef84baa83bd8741561cb, type: 2}
+  m_Motion: {fileID: 7400000, guid: 716778fb189740f42b46d019bb29cc76, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1107 &1107015634889117526
+--- !u!1107 &1107938478089254964
 AnimatorStateMachine:
   serializedVersion: 5
   m_ObjectHideFlags: 1
@@ -105,21 +105,21 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 1102147351708634428}
-    m_Position: {x: 340.73688, y: 36.2713, z: 0}
+    m_State: {fileID: 1102354814042613952}
+    m_Position: {x: 544.083, y: 21.66896, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1102798999325402626}
-    m_Position: {x: 406.7464, y: 188.91832, z: 0}
+    m_State: {fileID: 1102003278185235558}
+    m_Position: {x: 540, y: 192, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1102256156908632810}
-    m_Position: {x: 264, y: 120, z: 0}
+    m_State: {fileID: 1102547381398257378}
+    m_Position: {x: 384, y: 108, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: -12, y: 132, z: 0}
+  m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 1102256156908632810}
+  m_DefaultState: {fileID: 1102547381398257378}

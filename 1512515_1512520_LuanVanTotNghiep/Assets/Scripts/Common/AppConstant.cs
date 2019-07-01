@@ -9,6 +9,8 @@ public class AppConstant{
     public static string PATH_ICON                      = "Icon/";
 
     public static string INTRO_ANIM                     = "Intro";
+    public static string ACTIVE_LEFT_ANIM               = "ActiveLeft";
+    public static string ACTIVE_RIGHT_ANIM              = "ActiveRight";
 
     public static string SPEAKER                        = "speaker";
 }
@@ -46,4 +48,17 @@ public class FEATURE
     public static string END_PRESENTATION       = "End Presentation";
     public static string PREV_SLIDE             = "Prev Slide";
     public static string NEXT_SLIDE             = "Next Slide";
+}
+
+public enum BOUNDBOX_ANIM
+{
+    BoundBoxRect    = 0,
+    BoundBoxCircle  = 1,
+}
+
+public enum APPLICATION_TYPE
+{
+    Control         = 0,
+    Warning         = 1,
+    Nutrition       = 2,
 }
