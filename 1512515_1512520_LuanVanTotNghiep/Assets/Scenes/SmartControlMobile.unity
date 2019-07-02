@@ -15081,6 +15081,30 @@ Prefab:
       propertyPath: mainController
       value: 
       objectReference: {fileID: 1862323398}
+    - target: {fileID: 1577049399054008, guid: bb8f1c21a9f62804586c3b6b185cd4a6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133902955462700, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+        type: 2}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 636750408}
+    - target: {fileID: 114133902955462700, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133902955462700, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133902955462700, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.4627451
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb8f1c21a9f62804586c3b6b185cd4a6, type: 2}
   m_IsPrefabAsset: 0
@@ -17385,6 +17409,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &485824249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114456021224327204, guid: c3cce37fc3068ab40bc344648331de6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001583515}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &487623149
 GameObject:
   m_ObjectHideFlags: 0
@@ -21122,6 +21152,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 632388732}
   m_CullTransparentMesh: 0
+--- !u!114 &636750408 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114432436372217274, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 431477602}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &637345914
 GameObject:
   m_ObjectHideFlags: 0
@@ -33940,6 +33976,46 @@ Prefab:
         type: 2}
       propertyPath: m_FontData.m_MaxSize
       value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243870918958116, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 1683987124}
+    - target: {fileID: 114243870918958116, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243870918958116, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243870918958116, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114779085673603846, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 485824249}
+    - target: {fileID: 114779085673603846, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114779085673603846, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114779085673603846, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.4627451
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3cce37fc3068ab40bc344648331de6c, type: 2}
@@ -52449,6 +52525,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1674032748}
   m_CullTransparentMesh: 0
+--- !u!114 &1683987124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114785720460535644, guid: c3cce37fc3068ab40bc344648331de6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001583515}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1698874072
 GameObject:
   m_ObjectHideFlags: 0

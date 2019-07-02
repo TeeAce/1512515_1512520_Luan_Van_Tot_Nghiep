@@ -15081,9 +15081,35 @@ Prefab:
       propertyPath: mainController
       value: 
       objectReference: {fileID: 1862323398}
+    - target: {fileID: 114133902955462700, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+        type: 2}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 431477603}
+    - target: {fileID: 114133902955462700, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133902955462700, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133902955462700, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.4627451
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb8f1c21a9f62804586c3b6b185cd4a6, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &431477603 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114432436372217274, guid: bb8f1c21a9f62804586c3b6b185cd4a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 431477602}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &435728281
 GameObject:
   m_ObjectHideFlags: 0
@@ -33872,9 +33898,61 @@ Prefab:
       propertyPath: appType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114243870918958116, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 1001583517}
+    - target: {fileID: 114243870918958116, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243870918958116, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114243870918958116, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114779085673603846, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 1001583516}
+    - target: {fileID: 114779085673603846, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114779085673603846, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114779085673603846, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.4627451
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3cce37fc3068ab40bc344648331de6c, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1001583516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114456021224327204, guid: c3cce37fc3068ab40bc344648331de6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001583515}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1001583517 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114785720460535644, guid: c3cce37fc3068ab40bc344648331de6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001583515}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1002534510
 GameObject:
   m_ObjectHideFlags: 0
