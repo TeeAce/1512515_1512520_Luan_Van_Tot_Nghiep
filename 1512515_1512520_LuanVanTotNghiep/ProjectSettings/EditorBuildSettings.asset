@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: Assets/PiUi/TestScene/PieUI.unity
     guid: e4772b127aee05d4bbecc4509ad49cd0
   - enabled: 0
-    path: Assets/Scenes/SceneControllPC.unity
+    path: Assets/Scenes/ApplicationControllPCByIOT.unity
     guid: dca15183c3d388e4f97e26d11cc23bdf
   - enabled: 1
-    path: Assets/Scenes/SceneInteractionMobile.unity
+    path: Assets/Scenes/SmartControlMobile.unity
     guid: 3b2559446d9a7ce4c901dbda06e409c1
+  - enabled: 0
+    path: Assets/Scenes/SmartWarningMobile.unity
+    guid: c8f268727dcfa294aa698231a53641aa
+  - enabled: 0
+    path: Assets/Scenes/SmartNutritionMobile.unity
+    guid: 5b069ef8859fedf4d985dfc25f999e2d
   m_configObjects: {}
