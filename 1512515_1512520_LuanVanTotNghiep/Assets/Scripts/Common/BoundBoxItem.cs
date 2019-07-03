@@ -12,6 +12,12 @@ public class BoundBoxItem : MonoBehaviour {
     public CanvasGroup panelDes;
     public Animator panelDesAnim;
     public AspectRatioFitter ratio;
+    public Sprite spRect;
+    public Sprite spCircle;
+    public Image boundBoxBorder;
+    public GameObject decor0;
+    public GameObject decor1;
+
     public float posXLeft;
     public float posXRight;
     public float posYUp;

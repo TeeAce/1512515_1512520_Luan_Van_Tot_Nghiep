@@ -1346,9 +1346,52 @@ Prefab:
       propertyPath: m_FontData.m_FontSize
       value: 22
       objectReference: {fileID: 0}
+    - target: {fileID: 114860269816755900, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: spRect
+      value: 
+      objectReference: {fileID: 21300000, guid: 37d4591ae0e2cc549aec0eba1b11169e,
+        type: 3}
+    - target: {fileID: 114860269816755900, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: spCircle
+      value: 
+      objectReference: {fileID: 21300000, guid: 79fdd480f724aec4bb0f179b8dd5b1b5,
+        type: 3}
+    - target: {fileID: 114860269816755900, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: boundBoxBorder
+      value: 
+      objectReference: {fileID: 1469495097}
+    - target: {fileID: 114860269816755900, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: decor0
+      value: 
+      objectReference: {fileID: 1469495096}
+    - target: {fileID: 114860269816755900, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: decor1
+      value: 
+      objectReference: {fileID: 1469495095}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3cce37fc3068ab40bc344648331de6c, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1469495095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1785718689678972, guid: c3cce37fc3068ab40bc344648331de6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1469495094}
+--- !u!1 &1469495096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1547583611413314, guid: c3cce37fc3068ab40bc344648331de6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1469495094}
+--- !u!114 &1469495097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114750988849730164, guid: c3cce37fc3068ab40bc344648331de6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1469495094}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1515311519
 Prefab:
   m_ObjectHideFlags: 0

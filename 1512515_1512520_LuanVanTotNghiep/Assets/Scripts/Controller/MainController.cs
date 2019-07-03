@@ -450,6 +450,17 @@ public class MainController : MonoBehaviour {
     public void SetUpForApplication(BoundBoxItem boundBoxItem)
     {
         if(appType == APPLICATION_TYPE.Control)
+        {
             boundBoxItem.panelDes.alpha = 0;
+            boundBoxItem.boundBoxBorder.sprite = boundBoxItem.spRect;
+            boundBoxItem.decor0.SetActive(false);
+            boundBoxItem.decor1.SetActive(false);
+        }
+        else
+        {
+            boundBoxItem.boundBoxBorder.sprite = boundBoxItem.spCircle;
+            boundBoxItem.decor0.SetActive(true);
+            boundBoxItem.decor1.SetActive(true);
+        }
     }
 }

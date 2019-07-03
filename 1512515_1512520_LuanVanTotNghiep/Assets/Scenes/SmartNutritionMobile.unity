@@ -34050,6 +34050,33 @@ Prefab:
       propertyPath: screenHeight
       value: 720
       objectReference: {fileID: 0}
+    - target: {fileID: 114860269816755900, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: spRect
+      value: 
+      objectReference: {fileID: 21300000, guid: 37d4591ae0e2cc549aec0eba1b11169e,
+        type: 3}
+    - target: {fileID: 114860269816755900, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: spCircle
+      value: 
+      objectReference: {fileID: 21300000, guid: 79fdd480f724aec4bb0f179b8dd5b1b5,
+        type: 3}
+    - target: {fileID: 114860269816755900, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: boundBoxBorder
+      value: 
+      objectReference: {fileID: 1001583520}
+    - target: {fileID: 114860269816755900, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: decor0
+      value: 
+      objectReference: {fileID: 1001583519}
+    - target: {fileID: 114860269816755900, guid: c3cce37fc3068ab40bc344648331de6c,
+        type: 2}
+      propertyPath: decor1
+      value: 
+      objectReference: {fileID: 1001583518}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3cce37fc3068ab40bc344648331de6c, type: 2}
   m_IsPrefabAsset: 0
@@ -34065,6 +34092,22 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1001583515}
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!1 &1001583518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1785718689678972, guid: c3cce37fc3068ab40bc344648331de6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001583515}
+--- !u!1 &1001583519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1547583611413314, guid: c3cce37fc3068ab40bc344648331de6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001583515}
+--- !u!114 &1001583520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114750988849730164, guid: c3cce37fc3068ab40bc344648331de6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1001583515}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1002534510
 GameObject:
   m_ObjectHideFlags: 0
