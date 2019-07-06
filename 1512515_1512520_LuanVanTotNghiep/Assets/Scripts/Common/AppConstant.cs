@@ -61,4 +61,5 @@ public enum APPLICATION_TYPE
     Control         = 0,
     Warning         = 1,
     Nutrition       = 2,
+    Zoo             = 3,
 }
